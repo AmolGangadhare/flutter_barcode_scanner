@@ -21,12 +21,12 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await FlutterBarcodeScanner.scanBarcode("#ff6666");
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode("#ff6666");
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      barcodeScanRes = 'Failed to get platform version.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _scanBarcode = platformVersion;
+      _scanBarcode = barcodeScanRes;
     });
   }
 
@@ -44,17 +44,28 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Barcode scan'),
         ),
-        body: Column(children: <Widget>[
-          FlatButton(
-            onPressed: () {
-              initPlatformState();
-            },
-            child: Text("Start"),
-          ),
-          Text('Running on: $_scanBarcode\n'),
-        ]),
+        body: Builder(builder: (BuildContext context) {
+          return Container(
+            alignment: Alignment.center,
+            child: Flex(
+                direction: Axis.vertical,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {
+                      initPlatformState();
+                    },
+                    child: Text("Start barcode scan"),
+                  ),
+                  Text(
+                    'Scan result : $_scanBarcode\n',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ]),
+          );
+        }),
       ),
     );
   }
