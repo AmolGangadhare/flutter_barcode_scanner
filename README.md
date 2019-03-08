@@ -1,6 +1,6 @@
 # flutter_barcode_scanner
 
-A new Flutter plugin supports barcode scanning on both Android and iOS.
+A flutter plugin supports barcode scanning on both Android and iOS.
 
 ![alt text](https://github.com/AmolGangadhare/MyProfileRepo/blob/master/flutter_barcode_scanning_demo.gif "Demo")
 
@@ -46,3 +46,22 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
 Here you can pass color which is the line color in barcode overlay.
 
 Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for help in iOS
+
+
+## About me ..
+ 
+My email id, amol.gangadhare@gmail.com
+ 
+<table style="background-color:#F5F5DC">
+<tr>
+<td> 
+Amol Gangadhare
+ 
+<p align="center">
+<a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/gitHubLogo.png" width="32" height = "33"/></a>
+<a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/stackoverflow svg icon.svg" width="36" height="36"/></a>
+<a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/linkedInLogo.svg" width="36" height="36"/></a>
+</p>
+</td>
+</tr> 
+</table>
