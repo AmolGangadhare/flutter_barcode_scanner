@@ -188,6 +188,4 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         canvas.drawLine(left, endY, left + Utils.dpToPx(getContext(), rectWidth), endY, line);
         invalidate();
     }
-
-
 }
