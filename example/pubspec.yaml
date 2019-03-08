@@ -1,5 +1,5 @@
 name: flutter_barcode_scanner_example
-description: Demonstrates how to use the flutter_barcode_scanner plugin.
+description: Demonstrates how to use the flutter_barcode_scanner plugin for Android and iOS.
 publish_to: 'none'
 
 environment:

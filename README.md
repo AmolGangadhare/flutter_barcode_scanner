@@ -2,7 +2,7 @@
 
 A flutter plugin supports barcode scanning on both Android and iOS.
 
-![alt text](https://github.com/AmolGangadhare/MyProfileRepo/blob/master/flutter_barcode_scanning_demo.gif "Demo")
+![Demo gif](https://github.com/AmolGangadhare/MyProfileRepo/blob/master/flutter_barcode_scanning_demo.gif "Demo")
 
 
 ## Try example
