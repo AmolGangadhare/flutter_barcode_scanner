@@ -39,7 +39,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.1
+      flutter_barcode_scanner: ^0.0.3
 
 1. You need to import the package first.
 
@@ -50,21 +50,3 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE);`
 
 Here in `scanBarcode(COLOR_CODE)` you can pass hex-color which is the color of line in barcode overlay.
-
-## Credits
-Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for help in iOS
-
-## About me ..
-
-<table style="background-color:#F5F5DC">
-    <tr>
-    <td> 
-    Amol Gangadhare
-    <p align="center">
-    <a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height = "33"/></a>
-    <a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36"/></a>
-    <a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36"/></a>
-    </p>
-    </td>
-    </tr> 
-    </table>
