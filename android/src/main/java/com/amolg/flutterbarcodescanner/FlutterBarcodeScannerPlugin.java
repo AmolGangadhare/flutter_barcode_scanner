@@ -26,7 +26,7 @@ import io.flutter.plugin.common.PluginRegistry.ActivityResultListener;
 /**
  * FlutterBarcodeScannerPlugin
  */
-public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener{
+public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener {
     private static final String CHANNEL = "flutter_barcode_scanner";
     private static final int REQUEST_CODE_CAMERA_PERMISSION = 3777;
     private static FlutterBarcodeScannerPlugin instance;
@@ -66,8 +66,8 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                     throw new IllegalArgumentException("Plugin not passing a map as parameter: " + call.arguments);
                 }
                 arguments = (Map<String, Object>) call.arguments;
-                    lineColor = (String) arguments.get("lineColor");
-                    startBarcodeScannerActivityView();
+                lineColor = (String) arguments.get("lineColor");
+                startBarcodeScannerActivityView();
             }
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());
