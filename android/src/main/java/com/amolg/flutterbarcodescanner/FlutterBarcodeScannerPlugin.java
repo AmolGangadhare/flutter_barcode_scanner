@@ -67,6 +67,9 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 }
                 arguments = (Map<String, Object>) call.arguments;
                 lineColor = (String) arguments.get("lineColor");
+                if (null == lineColor || lineColor.equalsIgnoreCase("")) {
+                    lineColor = "#DC143C";
+                }
                 startBarcodeScannerActivityView();
             }
         } catch (Exception e) {
