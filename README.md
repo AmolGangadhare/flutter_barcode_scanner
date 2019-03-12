@@ -14,7 +14,9 @@ Follow the steps for Android and iOS
 
 ### Android
 
-To use on android, you need to add some permissions and a BarcodeCaptureActivity to AndroidManifest.
+It should work without any changes, still if not then you can follow the steps below :
+
+You need to add some permissions and a BarcodeCaptureActivity to AndroidManifest.
 1. Add the camera permission to your AndroidManifest.xml
 
     `<uses-permission android:name="android.permission.CAMERA" />`
@@ -25,10 +27,13 @@ To use on android, you need to add some permissions and a BarcodeCaptureActivity
 
 ### iOS
 
+Deployment target : 10
+Swift Version : 4.2
+
 As iOS code is written in Swift so you need to convert your existing iOS codebase to swift (or if you are creating a new project from Android Studio make sure to check `Include Swift support for iOS code`.) 
 To do that you can create a new project with same name in different location and then just copy iOS folder to existing.(if any changes made before make sure to add these in iOS(swift)).
 After making codebase in swift make sure that the Swift version is `4.2` as the code for iOS is written in Swift 4.2. 
-To use on iOS, open the Xcode and add camera usage description in Info.plist
+To use on iOS, open the Xcode and add camera usage description in `Info.plist`. 
 
     <key>NSCameraUsageDescription</key>
     <string>Camera permission is required for barcode scanning.</string>
@@ -39,7 +44,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.3
+      flutter_barcode_scanner: ^0.0.4
 
 1. You need to import the package first.
 
