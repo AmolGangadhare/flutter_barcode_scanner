@@ -14,16 +14,7 @@ Follow the steps for Android and iOS
 
 ### Android
 
-It should work without any changes, still if not then you can follow the steps below :
-
-You need to add some permissions and a BarcodeCaptureActivity to AndroidManifest.
-1. Add the camera permission to your AndroidManifest.xml
-
-    `<uses-permission android:name="android.permission.CAMERA" />`
-
-2. Add the BarcodeScanner activity to your AndroidManifest.xml. Do NOT modify the name.
-
-    `<activity android:name="com.amolg.flutterbarcodescanner.BarcodeCaptureActivity" />`
+:zap: , dont worry no need to do anything.
 
 ### iOS
 
