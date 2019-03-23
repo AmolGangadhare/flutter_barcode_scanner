@@ -16,8 +16,7 @@ Follow the steps for Android and iOS
 
 ### Android
 
-:zap:  
-Please make sure to add `compileSdkVersion 28` and `targetSdkVersion 28` in build.gradle(app) file, apart from this you don't need to do anything.
+:zap:  Don't worry, you don't need to do anything.
 
 ### iOS
 
@@ -38,7 +37,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.5
+      flutter_barcode_scanner: ^0.0.6
 
 1. You need to import the package first.
 
