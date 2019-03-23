@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Added support for Android X
+
 ## 0.0.4
 
 * Bug fixes and improvements
@@ -10,7 +14,6 @@
 ## 0.0.2
 
 * Minor bug fixes and improvements
-
 
 ## 0.0.1
 

@@ -1,6 +1,6 @@
 # flutter_barcode_scanner
 
-A flutter plugin adds barcode scanning support on both Android and iOS.
+A plugin for Flutter apps that adds barcode scanning support on both Android and iOS.
 
 [![pub package](https://img.shields.io/pub/v/flutter_barcode_scanner.svg)](https://pub.dartlang.org/packages/flutter_barcode_scanner)
 
@@ -16,7 +16,8 @@ Follow the steps for Android and iOS
 
 ### Android
 
-:zap: , dont worry no need to do anything.
+:zap:  
+Please make sure to add `compileSdkVersion 28` and `targetSdkVersion 28` in build.gradle(app) file, apart from this you don't need to do anything.
 
 ### iOS
 
@@ -37,7 +38,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.4
+      flutter_barcode_scanner: ^0.0.5
 
 1. You need to import the package first.
 
@@ -52,7 +53,7 @@ Here in `scanBarcode(COLOR_CODE)` you can pass hex-color which is the color of l
 
 ## Credits :
 
-Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for help in iOS
+Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for helping me for iOS part.
 
 
 ## About me ..
@@ -65,9 +66,9 @@ E-mail : amol.gangadhare@gmail.com
 Amol Gangadhare
  
 <p align="center">
-<a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/gitHubLogo.png" width="32" height = "33"/></a>
-<a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/stackoverflow svg icon.svg" width="36" height="36"/></a>
-<a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/harshalrj25/MasterAssetsRepo/blob/master/linkedInLogo.svg" width="36" height="36"/></a>
+<a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height = "33"/></a>
+<a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36"/></a>
+<a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36"/></a>
 </p>
 </td>
 </tr> 
