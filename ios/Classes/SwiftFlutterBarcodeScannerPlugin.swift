@@ -5,6 +5,7 @@ import AVFoundation
 public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate {
     public static var viewController = UIViewController()
     public static var lineColor:String=""
+    public static var cancelButtonText:String=""
     var pendingResult:FlutterResult!
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -20,7 +21,11 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }else {
             SwiftFlutterBarcodeScannerPlugin.lineColor = "#ff6666"
         }
-        
+        if let buttonText = args["cancelButtonText"] as? String{
+            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = buttonText
+        }else {
+            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
+        }
         pendingResult=result
         let controller = BarcodeScannerViewController()
         controller.delegate = self
@@ -93,7 +98,7 @@ class BarcodeScannerViewController: UIViewController {
     
     public lazy var cancelButton: UIButton! = {
         let view = UIButton()
-        view.setTitle("Cancel", for: .normal)
+        view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(BarcodeScannerViewController.playButtonClicked), for: .touchUpInside)
         return view

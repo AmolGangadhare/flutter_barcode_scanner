@@ -1,4 +1,9 @@
-## 0.0.5
+## 0.0.7
+
+* Added one more parameter in `scanBarcode` which is `CANCEL_BUTTON_TEXT`. 
+Now you can pass text of your choice and your language choice.
+
+## 0.0.6
 
 * Bug fixes and improvements
 

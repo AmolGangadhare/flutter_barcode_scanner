@@ -37,7 +37,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.6
+      flutter_barcode_scanner: ^0.0.7
 
 1. You need to import the package first.
 
@@ -45,30 +45,8 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
 2. Then use the `scanBarcode` method to access barcode scanning.
     
-    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE);`
+    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT);`
 
-Here in `scanBarcode(COLOR_CODE)` you can pass hex-color which is the color of line in barcode overlay.
-
-
-## Credits :
-
-Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for helping me for iOS part.
-
-
-## About me ..
- 
-E-mail : amol.gangadhare@gmail.com
- 
-<table style="background-color:#F5F5DC">
-<tr>
-<td> 
-Amol Gangadhare
- 
-<p align="center">
-<a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height = "33"/></a>
-<a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36"/></a>
-<a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36"/></a>
-</p>
-</td>
-</tr> 
-</table>
+Here in `scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT)` 
+`COLOR_CODE` is hex-color which is the color of line in barcode overlay you can pass color of your choice, 
+and `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language.

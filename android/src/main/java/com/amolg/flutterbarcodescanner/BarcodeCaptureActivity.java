@@ -36,6 +36,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -101,8 +102,16 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         super.onCreate(icicle);
         try {
             setContentView(R.layout.barcode_capture);
+            String buttonText = "";
+            try {
+                buttonText = (String) getIntent().getStringExtra("cancelButtonText");
+            } catch (Exception e) {
+                buttonText = "Cancel";
+                Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
+            }
             imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
             btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
+            btnBarcodeCaptureCancel.setText(buttonText);
             btnBarcodeCaptureCancel.setOnClickListener(this);
             imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
             mPreview = findViewById(R.id.preview);
