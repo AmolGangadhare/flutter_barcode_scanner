@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 
 /// Flutter barcode scanner class that bridge the native classes to flutter project
 class FlutterBarcodeScanner {
@@ -9,8 +8,10 @@ class FlutterBarcodeScanner {
       const MethodChannel('flutter_barcode_scanner');
 
   /// Use this method to start barcode scanning and get the barcode result in string
+  /// lineColor is color of a line in scanning
+  /// cancelButtonText is text of cancel button
   static Future<String> scanBarcode(
-      @required String lineColor, @required String cancelButtonText) async {
+      String lineColor, String cancelButtonText) async {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";
 

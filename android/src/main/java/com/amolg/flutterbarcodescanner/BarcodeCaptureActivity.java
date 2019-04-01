@@ -375,17 +375,22 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.imgViewBarcodeCaptureUseFlash) {
-            if (flashStatus == USE_FLASH.OFF.ordinal()) {
-                flashStatus = USE_FLASH.ON.ordinal();
-                imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
-            } else {
-                flashStatus = USE_FLASH.OFF.ordinal();
-                imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
+        if (i == R.id.imgViewBarcodeCaptureUseFlash &&
+                getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+            try {
+                if (flashStatus == USE_FLASH.OFF.ordinal()) {
+                    flashStatus = USE_FLASH.ON.ordinal();
+                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
+                } else {
+                    flashStatus = USE_FLASH.OFF.ordinal();
+                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
+                }
+                createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
+                startCameraSource();
+            } catch (Exception e) {
+                Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
+                Log.e("BarcodeCaptureActivity", "onClick: " + e.getLocalizedMessage());
             }
-            createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
-            startCameraSource();
-
         } else if (i == R.id.btnBarcodeCaptureCancel) {
             finish();
         }
