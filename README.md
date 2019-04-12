@@ -45,12 +45,12 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
 2. Then use the `scanBarcode` method to access barcode scanning.
     
-    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT);`
+    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT,isShowFlashIcon);`
 
 Here in `scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT)` 
 `COLOR_CODE` is hex-color which is the color of line in barcode overlay you can pass color of your choice, 
-and `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language.
-
+, `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language,
+`isShowFlashIcon` is bool value used to show or hide the flash icon.
 
 ## Credits :
 
