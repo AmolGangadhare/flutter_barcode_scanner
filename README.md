@@ -21,11 +21,11 @@ Follow the steps for Android and iOS
 ### iOS
 
 Deployment target : 10
-Swift Version : 4.2
+Swift Version : 5
 
 As iOS code is written in Swift so you need to convert your existing iOS codebase to swift (or if you are creating a new project from Android Studio make sure to check `Include Swift support for iOS code`.) 
 To do that you can create a new project with same name in different location and then just copy iOS folder to existing.(if any changes made before make sure to add these in iOS(swift)).
-After making codebase in swift make sure that the Swift version is `4.2` as the code for iOS is written in Swift 4.2. 
+After making codebase in swift make sure that the Swift version is `5` as the code for iOS is written in Swift 5. 
 To use on iOS, open the Xcode and add camera usage description in `Info.plist`. 
 
     <key>NSCameraUsageDescription</key>
@@ -37,7 +37,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.7
+      flutter_barcode_scanner: ^0.0.8
 
 1. You need to import the package first.
 

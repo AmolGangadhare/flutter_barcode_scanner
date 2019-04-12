@@ -39,6 +39,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     private static final String TAG = FlutterBarcodeScannerPlugin.class.getSimpleName();
     private static final int RC_BARCODE_CAPTURE = 9001;
     public static String lineColor = "";
+    public static boolean isShowFlashIcon = false;
 
     public FlutterBarcodeScannerPlugin(FlutterActivity activity) {
         this.activity = activity;
@@ -67,6 +68,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 }
                 arguments = (Map<String, Object>) call.arguments;
                 lineColor = (String) arguments.get("lineColor");
+                isShowFlashIcon = (boolean) arguments.get("isShowFlashIcon");
                 if (null == lineColor || lineColor.equalsIgnoreCase("")) {
                     lineColor = "#DC143C";
                 }

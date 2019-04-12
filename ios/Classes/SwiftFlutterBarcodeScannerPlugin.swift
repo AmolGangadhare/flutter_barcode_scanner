@@ -6,6 +6,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var viewController = UIViewController()
     public static var lineColor:String=""
     public static var cancelButtonText:String=""
+    public static var isShowFlashIcon:Bool=false
     var pendingResult:FlutterResult!
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -26,6 +27,12 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }else {
             SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
         }
+        if let flashStatus = args["isShowFlashIcon"] as? Bool{
+            SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
+        }else {
+            SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = false
+        }
+        
         pendingResult=result
         let controller = BarcodeScannerViewController()
         controller.delegate = self
@@ -174,7 +181,9 @@ class BarcodeScannerViewController: UIViewController {
             self.view.bringSubviewToFront(qrCodeFrameView)
             qrCodeFrameView.layer.insertSublayer(fillLayer, below: videoPreviewLayer!)
             self.view.bringSubviewToFront(bottomView)
-            self.view.bringSubviewToFront(flashIcon)
+            if(!SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon){
+                flashIcon.isHidden=true
+            }
             self.view.bringSubviewToFront(cancelButton)
         }
         self.drawLine()
@@ -196,7 +205,7 @@ class BarcodeScannerViewController: UIViewController {
         bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
         bottomView.heightAnchor.constraint(equalToConstant:100.0).isActive=true
-        
+
         flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-40).isActive = true
         flashIcon.heightAnchor.constraint(equalToConstant: 50.0).isActive = true

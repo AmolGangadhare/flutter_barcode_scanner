@@ -114,6 +114,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             btnBarcodeCaptureCancel.setText(buttonText);
             btnBarcodeCaptureCancel.setOnClickListener(this);
             imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
+            imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
             mPreview = findViewById(R.id.preview);
             mGraphicOverlay = findViewById(R.id.graphicOverlay);
 
@@ -377,6 +378,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         int i = v.getId();
         if (i == R.id.imgViewBarcodeCaptureUseFlash &&
                 getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+
             try {
                 if (flashStatus == USE_FLASH.OFF.ordinal()) {
                     flashStatus = USE_FLASH.ON.ordinal();
@@ -385,11 +387,12 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                     flashStatus = USE_FLASH.OFF.ordinal();
                     imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
                 }
+
                 createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
                 startCameraSource();
             } catch (Exception e) {
                 Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
-                Log.e("BarcodeCaptureActivity", "onClick: " + e.getLocalizedMessage());
+                Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
             }
         } else if (i == R.id.btnBarcodeCaptureCancel) {
             finish();

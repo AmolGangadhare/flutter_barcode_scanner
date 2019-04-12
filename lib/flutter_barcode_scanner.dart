@@ -10,15 +10,17 @@ class FlutterBarcodeScanner {
   /// Use this method to start barcode scanning and get the barcode result in string
   /// lineColor is color of a line in scanning
   /// cancelButtonText is text of cancel button
+  /// isShowFlashIcon is bool to show or hide flash icon
   static Future<String> scanBarcode(
-      String lineColor, String cancelButtonText) async {
+      String lineColor, String cancelButtonText, bool isShowFlashIcon) async {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";
 
     /// pass a line color param
     Map params = <String, dynamic>{
       "lineColor": lineColor,
-      "cancelButtonText": cancelButtonText
+      "cancelButtonText": cancelButtonText,
+      "isShowFlashIcon": isShowFlashIcon
     };
 
     /// Get barcode scan result

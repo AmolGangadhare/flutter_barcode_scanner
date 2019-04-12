@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;Allow camera permissions&quot;</string>
+	<string>&quot;Camera permission is needed to use barcode scanning. Please allow permissions.&quot;</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

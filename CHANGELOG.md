@@ -1,3 +1,9 @@
+## 0.0.8
+
+* Added one more parameter in `scanBarcode` which is `isShowFlashIcon`. 
+Now you can pass bool value of your choice to show or hide the flash icon.
+* Upgraded example code to Swift 5. Plugin is now Swift 5 compatible.
+
 ## 0.0.7
 
 * Added one more parameter in `scanBarcode` which is `CANCEL_BUTTON_TEXT`. 
