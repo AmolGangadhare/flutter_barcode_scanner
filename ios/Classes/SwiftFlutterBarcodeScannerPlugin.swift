@@ -219,7 +219,7 @@ class BarcodeScannerViewController: UIViewController {
         
     }
     
-    @objc private func flashButtonClicked() {
+    @IBAction private func flashButtonClicked() {
         if #available(iOS 10.0, *) {
             if flashIcon.image(for: .normal) == UIImage(named: "ic_flash_on", in: Bundle(identifier: "org.cocoapods.flutter-barcode-scanner"), compatibleWith: nil){
                 flashIcon.setImage(UIImage(named: "ic_flash_off", in: Bundle(identifier: "org.cocoapods.flutter-barcode-scanner"), compatibleWith: nil),for:.normal)
@@ -255,7 +255,7 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
-    @objc private func playButtonClicked() {
+    @IBAction private func playButtonClicked() {
         if #available(iOS 10.0, *) {
             self.dismiss(animated: true) {
             }

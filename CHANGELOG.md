@@ -1,3 +1,7 @@
+## 0.0.9
+
+* Potential bug fix for issue #9 (Swift 3 inference for @Objc)
+
 ## 0.0.8
 
 * Added one more parameter in `scanBarcode` which is `isShowFlashIcon`. 
