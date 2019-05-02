@@ -39,11 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="180">
+              <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="360" column="23" lean-forward="true" selection-start-line="360" selection-start-column="23" selection-end-line="360" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -119,6 +128,11 @@
             <path>
               <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
               <item name="flutter_barcode_scanner" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flutter_barcode_scanner" type="462c0819:PsiDirectoryNode" />
               <item name="ios" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -177,7 +191,6 @@
     <frame x="0" y="23" width="1280" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Resources Explorer" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20516963" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
@@ -186,6 +199,7 @@
       <window_info id="Build Variants" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32970452" />
       <window_info anchor="bottom" id="Run" order="1" sideWeight="0.4983845" weight="0.46034214" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32970452" />
@@ -362,8 +376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="180">
+          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
         </state>
       </provider>
     </entry>
