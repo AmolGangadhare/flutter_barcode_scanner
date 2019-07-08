@@ -37,15 +37,12 @@ class FlutterBarcodeScanner {
     if (null == barcodeResult) {
       barcodeResult = "";
     }
-    _eventChannel.receiveBroadcastStream().listen(((barcode) {
-      return barcode;
-    }));
     return barcodeResult;
   }
 
   /// isContinuousScan is bool to scan barcode continuously (true= scan continuously, don't close on barcode detect||
   /// false= close scanning on barcode detection)
-  static Stream onBarcodeStreamReceiver(
+  static Stream getBarcodeStreamReceiver(
       String lineColor, String cancelButtonText, bool isShowFlashIcon) {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";

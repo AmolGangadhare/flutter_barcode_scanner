@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   startBarcodeScanStream() async {
-    FlutterBarcodeScanner.onBarcodeStreamReceiver("#ff6666", "Cancel", false)
+    FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
         .listen((barcode) => print(barcode));
   }
 

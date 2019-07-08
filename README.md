@@ -57,31 +57,8 @@ Here in `scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT)`
 * If you need to scan barcodes continuously without closing camera use
 
 ```
-FlutterBarcodeScanner.onBarcodeStreamReceiver("#ff6666", "Cancel", false)
+FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
          .listen((barcode) { 
          /// barcode to be used
          });
 ```
-
-## Credits :
-
-Special thanks to [@Harshal Jadhav](https://github.com/harshalrj25) for helping me for iOS part.
-
-
-## About me ..
- 
-E-mail : amol.gangadhare@gmail.com
- 
-<table style="background-color:#F5F5DC">
-<tr>
-<td> 
-Amol Gangadhare
- 
-<p align="center">
-<a href = "https://github.com/AmolGangadhare"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height = "33"/></a>
-<a href = "https://stackoverflow.com/users/9823185/amol-g?tab=profile"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36"/></a>
-<a href = "https://www.linkedin.com/in/amolgangadhare/"><img src = "https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36"/></a>
-</p>
-</td>
-</tr> 
-</table>
