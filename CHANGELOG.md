@@ -1,3 +1,8 @@
+## 0.1.0
+
+* New feature (Issue #18): Now barcodes can be scanned continuously without closing camera.
+* Upgraded workspace for Android and iOS
+
 ## 0.0.9
 
 * Potential bug fix for issue #9 (Swift 3 inference for @Objc)

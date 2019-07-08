@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
@@ -17,6 +17,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+  }
+
+  startBarcodeScanStream() async {
+    FlutterBarcodeScanner.onBarcodeStreamReceiver("#ff6666", "Cancel", false)
+        .listen((barcode) => print(barcode));
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -63,6 +68,12 @@ class _MyAppState extends State<MyApp> {
                   Text(
                     'Scan result : $_scanBarcode\n',
                     style: TextStyle(fontSize: 20),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      startBarcodeScanStream();
+                    },
+                    child: Text("Start barcode scan stream"),
                   ),
                 ]),
           );

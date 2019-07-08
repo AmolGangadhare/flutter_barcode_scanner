@@ -2,18 +2,42 @@ import Flutter
 import UIKit
 import AVFoundation
 
-public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate {
+public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate,FlutterStreamHandler {
+    
+    
     public static var viewController = UIViewController()
     public static var lineColor:String=""
     public static var cancelButtonText:String=""
     public static var isShowFlashIcon:Bool=false
     var pendingResult:FlutterResult!
+    public static var isContinuousScan:Bool=false
+    static var barcodeStream:FlutterEventSink?=nil
+    
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
         let channel = FlutterMethodChannel(name: "flutter_barcode_scanner", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterBarcodeScannerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
+        let eventChannel=FlutterEventChannel(name: "flutter_barcode_scanner_receiver", binaryMessenger: registrar.messenger())
+        eventChannel.setStreamHandler(instance)
     }
+    
+    
+    public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        SwiftFlutterBarcodeScannerPlugin.barcodeStream = events
+        return nil
+    }
+    
+    public func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        SwiftFlutterBarcodeScannerPlugin.barcodeStream=nil
+        return nil
+    }
+    
+    public static func onBarcodeScanReceiver( barcode:String){
+        barcodeStream!(barcode)
+    }
+    
+    
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         var args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
@@ -31,6 +55,11 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
             SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
         }else {
             SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = false
+        }
+        if let isContinuousScan = args["isContinuousScan"] as? Bool{
+            SwiftFlutterBarcodeScannerPlugin.isContinuousScan = isContinuousScan
+        }else {
+            SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
         }
         
         pendingResult=result
@@ -205,7 +234,7 @@ class BarcodeScannerViewController: UIViewController {
         bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
         bottomView.heightAnchor.constraint(equalToConstant:100.0).isActive=true
-
+        
         flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-40).isActive = true
         flashIcon.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
@@ -309,9 +338,13 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         if supportedCodeTypes.contains(metadataObj.type) {
             // If the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView?.frame = barCodeObject!.bounds
+            //qrCodeFrameView?.frame = barCodeObject!.bounds
             if metadataObj.stringValue != nil {
-                launchApp(decodedURL: metadataObj.stringValue!)
+                if(SwiftFlutterBarcodeScannerPlugin.isContinuousScan){
+                    SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: metadataObj.stringValue!)
+                }else{
+                    launchApp(decodedURL: metadataObj.stringValue!)
+                }
             }
         }
     }

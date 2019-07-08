@@ -18,7 +18,7 @@ Follow the steps for Android and iOS
 
 :zap:  Don't worry, you don't need to do anything.
 
-### iOS
+### iOS - Requires Swift support
 
 Deployment target : 10
 Swift Version : 5
@@ -37,8 +37,9 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.0.9
+      flutter_barcode_scanner: ^0.1.0
 
+### One time scan
 1. You need to import the package first.
 
     `import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';`
@@ -51,6 +52,16 @@ Here in `scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT)`
 `COLOR_CODE` is hex-color which is the color of line in barcode overlay you can pass color of your choice, 
 , `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language,
 `isShowFlashIcon` is bool value used to show or hide the flash icon.
+
+### Continuous scan
+* If you need to scan barcodes continuously without closing camera use
+
+```
+FlutterBarcodeScanner.onBarcodeStreamReceiver("#ff6666", "Cancel", false)
+         .listen((barcode) { 
+         /// barcode to be used
+         });
+```
 
 ## Credits :
 
