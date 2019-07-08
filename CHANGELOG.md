@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Removed unnecessary code.
+
 ## 0.1.0
 
 * New feature (Issue #18): Now barcodes can be scanned continuously without closing camera.
