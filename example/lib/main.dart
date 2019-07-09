@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
+    FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", true)
         .listen((barcode) => print(barcode));
   }
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes =
-          await FlutterBarcodeScanner.scanBarcode("#ff6666", "Cancel", false);
+          await FlutterBarcodeScanner.scanBarcode("#ff6666", "Cancel", true);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -48,37 +48,28 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Barcode scan'),
-        ),
-        body: Builder(builder: (BuildContext context) {
-          return Container(
-            alignment: Alignment.center,
-            child: Flex(
-                direction: Axis.vertical,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () {
-                      initPlatformState();
-                    },
-                    child: Text("Start barcode scan"),
-                  ),
-                  Text(
-                    'Scan result : $_scanBarcode\n',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      startBarcodeScanStream();
-                    },
-                    child: Text("Start barcode scan stream"),
-                  ),
-                ]),
-          );
-        }),
-      ),
-    );
+        home: Scaffold(
+            appBar: AppBar(title: const Text('Barcode scan')),
+            body: Builder(builder: (BuildContext context) {
+              return Container(
+                  alignment: Alignment.center,
+                  child: Flex(
+                      direction: Axis.vertical,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RaisedButton(
+                            onPressed: () {
+                              initPlatformState();
+                            },
+                            child: Text("Start barcode scan")),
+                        Text('Scan result : $_scanBarcode\n',
+                            style: TextStyle(fontSize: 20)),
+                        RaisedButton(
+                            onPressed: () {
+                              startBarcodeScanStream();
+                            },
+                            child: Text("Start barcode scan stream"))
+                      ]));
+            })));
   }
 }

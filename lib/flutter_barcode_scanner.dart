@@ -17,14 +17,12 @@ class FlutterBarcodeScanner {
   /// lineColor is color of a line in scanning
   /// cancelButtonText is text of cancel button
   /// isShowFlashIcon is bool to show or hide flash icon
-  /// isContinuousScan is bool to scan barcode continuously (true= scan continuously, don't close on barcode detect||
-  /// false= close scanning on barcode detection)
   static Future<String> scanBarcode(
       String lineColor, String cancelButtonText, bool isShowFlashIcon) async {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";
 
-    /// pass a line color param
+    /// create params to be pass to plugin
     Map params = <String, dynamic>{
       "lineColor": lineColor,
       "cancelButtonText": cancelButtonText,
@@ -40,14 +38,15 @@ class FlutterBarcodeScanner {
     return barcodeResult;
   }
 
-  /// isContinuousScan is bool to scan barcode continuously (true= scan continuously, don't close on barcode detect||
-  /// false= close scanning on barcode detection)
+  /// This method allows continuous barcode scanning without closing camera.
+  /// It will return stream of barcode strings.
+  /// Parameters will be same as #scanBarcode
   static Stream getBarcodeStreamReceiver(
       String lineColor, String cancelButtonText, bool isShowFlashIcon) {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";
 
-    /// pass a line color param
+    /// create params to be pass to plugin
     Map params = <String, dynamic>{
       "lineColor": lineColor,
       "cancelButtonText": cancelButtonText,
@@ -55,7 +54,8 @@ class FlutterBarcodeScanner {
       "isContinuousScan": true
     };
 
-    /// Get barcode scan result
+    /// Invoke method to open camera
+    /// and then create event channel which will return stream
     _channel.invokeMethod('scanBarcode', params);
     if (_onBarcodeReceiver == null) {
       _onBarcodeReceiver = _eventChannel.receiveBroadcastStream();

@@ -1,3 +1,7 @@
+## 0.1.2
+
+* iOS: flash icon not visible for some devices issue fix.
+
 ## 0.1.1
 
 * Removed unnecessary code.
