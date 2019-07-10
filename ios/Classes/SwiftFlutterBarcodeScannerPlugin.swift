@@ -356,18 +356,30 @@ func hexStringToUIColor (hex:String) -> UIColor {
     if (cString.hasPrefix("#")) {
         cString.remove(at: cString.startIndex)
     }
-    
-    if ((cString.count) != 6) {
+
+    if ((cString.count) != 6 && (cString.count) != 8) {
         return UIColor.gray
     }
-    var rgbValue:UInt32 = 0
-    Scanner(string: cString).scanHexInt32(&rgbValue)
+
+    var rgbaValue:UInt32 = 0
+
+    if (!Scanner(string: cString).scanHexInt32(&rgbaValue)) {
+        return UIColor.gray
+    }
+
+    var aValue:CGFloat = 1.0
+    if ((cString.count) == 8) {
+        aValue = CGFloat((rgbaValue & 0xFF000000) >> 24) / 255.0
+    }
     
+    let rValue:CGFloat = CGFloat((rgbaValue & 0x00FF0000) >> 16) / 255.0
+    let gValue:CGFloat = CGFloat((rgbaValue & 0x0000FF00) >> 8) / 255.0
+    let bValue:CGFloat = CGFloat(rgbaValue & 0x000000FF) / 255.0
     
     return UIColor(
-        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-        alpha: CGFloat(1.0)
+        red: rValue,
+        green: gValue,
+        blue: bValue,
+        alpha: aValue
     )
 }
