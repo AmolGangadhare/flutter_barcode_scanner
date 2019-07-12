@@ -1,3 +1,7 @@
+## 0.1.2+1
+
+* iOS: Added support for ARGB color code which was not supported earlier.
+
 ## 0.1.2
 
 * iOS: flash icon not visible for some devices issue fix.

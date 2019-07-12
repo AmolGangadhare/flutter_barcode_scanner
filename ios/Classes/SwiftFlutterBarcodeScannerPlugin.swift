@@ -4,7 +4,6 @@ import AVFoundation
 
 public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate,FlutterStreamHandler {
     
-    
     public static var viewController = UIViewController()
     public static var lineColor:String=""
     public static var cancelButtonText:String=""
@@ -118,6 +117,7 @@ class BarcodeScannerViewController: UIViewController {
         return view
     }()
     
+    /// Create and return flash button
     private lazy var flashIcon : UIButton! = {
         let flashButton = UIButton()
         flashButton.setTitle("Flash",for:.normal)
@@ -130,12 +130,12 @@ class BarcodeScannerViewController: UIViewController {
     }()
     
     
-    
+    /// Create and return cancel button
     public lazy var cancelButton: UIButton! = {
         let view = UIButton()
         view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.addTarget(self, action: #selector(BarcodeScannerViewController.playButtonClicked), for: .touchUpInside)
+        view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
         return view
     }()
     
@@ -225,6 +225,7 @@ class BarcodeScannerViewController: UIViewController {
         self.moveVertically()
     }
     
+    /// Apply constraints to ui components
     private func setConstraintsForControls() {
         self.view.addSubview(bottomView)
         self.view.addSubview(cancelButton)
@@ -248,6 +249,7 @@ class BarcodeScannerViewController: UIViewController {
         
     }
     
+    /// Flash button click event listener
     @IBAction private func flashButtonClicked() {
         if #available(iOS 10.0, *) {
             if flashIcon.image(for: .normal) == UIImage(named: "ic_flash_on", in: Bundle(identifier: "org.cocoapods.flutter-barcode-scanner"), compatibleWith: nil){
@@ -261,6 +263,8 @@ class BarcodeScannerViewController: UIViewController {
             
         }
     }
+    
+    /// Toggle flash and change flash icon
     func toggleFlash() {
         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         guard device.hasTorch else { return }
@@ -284,16 +288,14 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
-    @IBAction private func playButtonClicked() {
-        if #available(iOS 10.0, *) {
-            self.dismiss(animated: true) {
-            }
-        } else {
-            self.dismiss(animated: true) {
-            }
+    
+    /// Cancel button click event listener
+    @IBAction private func cancelButtonClicked() {
+        self.dismiss(animated: true) {
         }
     }
     
+    /// Draw scan line
     private func drawLine() {
         self.view.addSubview(scanLine)
         scanLine.backgroundColor = hexStringToUIColor(hex: SwiftFlutterBarcodeScannerPlugin.lineColor) // green color
@@ -302,6 +304,8 @@ class BarcodeScannerViewController: UIViewController {
         scanlineStopY = yCor + (screenSize.width*0.8)
     }
     
+    
+    /// Animate scan line vertically
     private func moveVertically() {
         scanLine.frame  = scanlineRect
         scanLine.center = CGPoint(x: scanLine.center.x, y: scanlineStartY)
@@ -326,6 +330,7 @@ class BarcodeScannerViewController: UIViewController {
     }
 }
 
+/// Extension for view controller
 extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -350,23 +355,24 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+/// Convert hex string to UIColor
 func hexStringToUIColor (hex:String) -> UIColor {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
     
     if (cString.hasPrefix("#")) {
         cString.remove(at: cString.startIndex)
     }
-
+    
     if ((cString.count) != 6 && (cString.count) != 8) {
         return UIColor.gray
     }
-
+    
     var rgbaValue:UInt32 = 0
-
+    
     if (!Scanner(string: cString).scanHexInt32(&rgbaValue)) {
         return UIColor.gray
     }
-
+    
     var aValue:CGFloat = 1.0
     if ((cString.count) == 8) {
         aValue = CGFloat((rgbaValue & 0xFF000000) >> 24) / 255.0
