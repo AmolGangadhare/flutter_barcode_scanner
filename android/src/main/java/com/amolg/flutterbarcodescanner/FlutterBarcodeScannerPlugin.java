@@ -34,7 +34,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     private static final int REQUEST_CODE_CAMERA_PERMISSION = 3777;
     private static FlutterBarcodeScannerPlugin instance;
 
-    private FlutterActivity activity;
+    private static FlutterActivity activity;
     private static Result pendingResult;
     private Map<String, Object> arguments;
     private boolean executeAfterPermissionGranted;
@@ -160,13 +160,18 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
      *
      * @param barcode
      */
-    public static void onBarcodeScanReceiver(Barcode barcode) {
+    public static void onBarcodeScanReceiver(final Barcode barcode) {
         try {
             if (barcode != null && !barcode.displayValue.isEmpty()) {
-                barcodeStream.success(barcode.displayValue);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        barcodeStream.success(barcode.displayValue);
+                    }
+                });
             }
         } catch (Exception e) {
-
+            Log.e(TAG, "onBarcodeScanReceiver: " + e.getLocalizedMessage());
         }
     }
 }
