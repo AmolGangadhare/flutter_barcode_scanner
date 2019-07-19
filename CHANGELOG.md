@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Android: Continuous scan not working issue fix.
+
 ## 0.1.2+1
 
 * iOS: Added support for ARGB color code which was not supported earlier.
