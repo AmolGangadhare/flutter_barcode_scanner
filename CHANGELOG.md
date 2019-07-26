@@ -1,3 +1,7 @@
+## 0.1.4
+
+* iOS: Added check for camera permission. Ask user to grant camera permission.
+
 ## 0.1.3
 
 * Android: Continuous scan not working issue fix.

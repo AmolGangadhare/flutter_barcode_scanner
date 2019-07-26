@@ -21,6 +21,10 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         eventChannel.setStreamHandler(instance)
     }
     
+    /// Check for camera permission
+    func checkForCameraPermission()->Bool{
+        return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+    }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         SwiftFlutterBarcodeScannerPlugin.barcodeStream = events
@@ -35,8 +39,6 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static func onBarcodeScanReceiver( barcode:String){
         barcodeStream!(barcode)
     }
-    
-    
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         var args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
@@ -64,9 +66,18 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         pendingResult=result
         let controller = BarcodeScannerViewController()
         controller.delegate = self
-        SwiftFlutterBarcodeScannerPlugin.viewController.present(controller
-        , animated: true) {
-            
+        if(checkForCameraPermission()){
+            SwiftFlutterBarcodeScannerPlugin.viewController.present(controller
+            , animated: true) {
+                
+            }}else{
+            let alertController = UIAlertController(title: "Action needed", message: "Please grant camera permission to use barcode scanner", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Grant", style: .default) {
+                (action) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            alertController.addAction(alertAction)
+            SwiftFlutterBarcodeScannerPlugin.viewController.present(alertController, animated: true, completion: nil)
         }
     }
     
