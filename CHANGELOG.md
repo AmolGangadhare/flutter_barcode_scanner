@@ -1,3 +1,7 @@
+## 0.1.5
+
+* iOS: Camera permission issue fix (fixes issue #24).
+
 ## 0.1.4
 
 * iOS: Added check for camera permission. Ask user to grant camera permission.
