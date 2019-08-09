@@ -42,7 +42,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.1.4
+      flutter_barcode_scanner: ^0.1.5+1
 
 ### One time scan
 1. You need to import the package first.
@@ -67,3 +67,7 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
          /// barcode to be used
          });
 ```
+
+### Contribution:
+
+ You can always contribute to this plugin by raising any issue or by PR.

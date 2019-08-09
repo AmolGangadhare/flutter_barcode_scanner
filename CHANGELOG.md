@@ -1,3 +1,7 @@
+## 0.1.5+1
+
+* Android: Potential issue fix Unhandled Exception: MissingPluginException.
+
 ## 0.1.5
 
 * iOS: Camera permission issue fix (fixes issue #24).
