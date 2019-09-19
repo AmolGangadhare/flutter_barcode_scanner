@@ -14,6 +14,8 @@ Connect device and hit `run`. To run on iPhone you need to run from `Xcode first
 ## Getting Started 
 Follow the steps for Android and iOS
 
+PLEASE FOLLOW **iOS** STEPS CAREFULLY
+
 ### Android
 
 :zap:  Don't worry, you don't need to do anything.
@@ -42,7 +44,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.1.5+1
+      flutter_barcode_scanner: ^0.1.5+2
 
 ### One time scan
 1. You need to import the package first.
@@ -71,3 +73,7 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
 ### Contribution:
 
  You can always contribute to this plugin by raising any issue or by PR.
+ 
+### Contact:
+
+E-mail: amol.gangadhare@gmail.com

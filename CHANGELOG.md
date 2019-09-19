@@ -1,3 +1,7 @@
+## 0.1.5+2
+
+* iOS: No response on cancel button click (Fixes issue #33).
+
 ## 0.1.5+1
 
 * Android: Potential issue fix Unhandled Exception: MissingPluginException.

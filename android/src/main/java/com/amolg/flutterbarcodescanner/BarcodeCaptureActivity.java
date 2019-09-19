@@ -64,7 +64,7 @@ import java.io.IOException;
  * size, and ID of each barcode.
  */
 public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener, View.OnClickListener {
-
+    private static final String TAG = BarcodeCaptureActivity.class.getSimpleName();
     // intent request code to handle updating play services if needed.
     private static final int RC_HANDLE_GMS = 9001;
 
@@ -93,6 +93,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     }
 
     private int flashStatus = USE_FLASH.OFF.ordinal();
+
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -133,6 +134,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
             gestureDetector = new GestureDetector(this, new CaptureGestureListener());
             scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+
         } catch (Exception e) {
         }
     }
@@ -328,6 +330,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 mCameraSource = null;
             }
         }
+        System.gc();
     }
 
     /**
@@ -378,14 +381,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         int i = v.getId();
         if (i == R.id.imgViewBarcodeCaptureUseFlash &&
                 getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-
             try {
                 if (flashStatus == USE_FLASH.OFF.ordinal()) {
                     flashStatus = USE_FLASH.ON.ordinal();
                     imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
+//                    turnOnOffFlash(false);
                 } else {
                     flashStatus = USE_FLASH.OFF.ordinal();
                     imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
+//                    turnOnOffFlash(true);
                 }
 
                 createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
@@ -395,8 +399,33 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
             }
         } else if (i == R.id.btnBarcodeCaptureCancel) {
+            Barcode barcode = new Barcode();
+            barcode.rawValue = "-1";
+            barcode.displayValue = "-1";
+            FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
             finish();
         }
+    }
+
+    /**
+     * Turn ON OFF flash based on flag
+     * :: UNDER DEVELOPMENT
+     *
+     * @param isFlashToBeTurnOn
+     */
+    private void turnOnOffFlash(boolean isFlashToBeTurnOn) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            try {
+//                parameters.setFlashMode(isFlashToBeTurnOn ? Camera.Parameters.FLASH_MODE_TORCH : null);
+//                camera.setParameters(parameters);
+//                camera.startPreview();
+//            } catch (Exception e) {
+//                Log.e(TAG, "turnOnOffFlash: " + e.getLocalizedMessage());
+//            }
+//        } else {
+        createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
+        startCameraSource();
+//        }
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {

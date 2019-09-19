@@ -332,7 +332,16 @@ class BarcodeScannerViewController: UIViewController {
     
     /// Cancel button click event listener
     @IBAction private func cancelButtonClicked() {
-        self.dismiss(animated: true) {
+        if SwiftFlutterBarcodeScannerPlugin.isContinuousScan{
+            self.dismiss(animated: true, completion: {
+                SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: "-1")
+            })
+        }else{
+            if self.delegate != nil {
+                self.dismiss(animated: true, completion: {
+                    self.delegate?.userDidScanWith(barcode: "-1")
+                })
+            }
         }
     }
     
