@@ -86,6 +86,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
     private ImageView imgViewBarcodeCaptureUseFlash;
     private Button btnBarcodeCaptureCancel;
+    private Camera cam = null;
 
     enum USE_FLASH {
         ON,
@@ -385,15 +386,12 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 if (flashStatus == USE_FLASH.OFF.ordinal()) {
                     flashStatus = USE_FLASH.ON.ordinal();
                     imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
-//                    turnOnOffFlash(false);
+                    turnOnOffFlashLight(true);
                 } else {
                     flashStatus = USE_FLASH.OFF.ordinal();
                     imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
-//                    turnOnOffFlash(true);
+                    turnOnOffFlashLight(false);
                 }
-
-                createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
-                startCameraSource();
             } catch (Exception e) {
                 Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
                 Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
@@ -408,24 +406,23 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     }
 
     /**
-     * Turn ON OFF flash based on flag
-     * :: UNDER DEVELOPMENT
+     * Turn on and off flash light based on flag
      *
      * @param isFlashToBeTurnOn
      */
-    private void turnOnOffFlash(boolean isFlashToBeTurnOn) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            try {
-//                parameters.setFlashMode(isFlashToBeTurnOn ? Camera.Parameters.FLASH_MODE_TORCH : null);
-//                camera.setParameters(parameters);
-//                camera.startPreview();
-//            } catch (Exception e) {
-//                Log.e(TAG, "turnOnOffFlash: " + e.getLocalizedMessage());
-//            }
-//        } else {
-        createCameraSource(true, (flashStatus == USE_FLASH.ON.ordinal()));
-        startCameraSource();
-//        }
+    private void turnOnOffFlashLight(boolean isFlashToBeTurnOn) {
+        try {
+            if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+                String flashMode = "";
+                flashMode = isFlashToBeTurnOn ? Camera.Parameters.FLASH_MODE_TORCH : Camera.Parameters.FLASH_MODE_OFF;
+
+                mCameraSource.setFlashMode(flashMode);
+            } else {
+                Toast.makeText(getBaseContext(), "Unable to access flashlight as flashlight not available", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Unable to access flashlight.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {

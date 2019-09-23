@@ -1,3 +1,8 @@
+## 0.1.6
+
+* Android: Issue #31 fix (Out of memory crash).
+* iOS: Issue #34 fix (Flash icon mismatch).
+
 ## 0.1.5+2
 
 * iOS: No response on cancel button click (Fixes issue #33).
