@@ -2,6 +2,15 @@ import Flutter
 import UIKit
 import AVFoundation
 
+enum ScanMode:Int{
+    case QR
+    case BARCODE
+    
+    var index: Int {
+        return rawValue
+    }
+}
+
 public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate,FlutterStreamHandler {
     
     public static var viewController = UIViewController()
@@ -11,6 +20,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     var pendingResult:FlutterResult!
     public static var isContinuousScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
+    public static var scanMode = ScanMode.QR.index;
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -65,6 +75,12 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
             SwiftFlutterBarcodeScannerPlugin.isContinuousScan = isContinuousScan
         }else {
             SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
+        }
+        
+        if let scanModeReceived = args["scanMode"] as? Int {
+            SwiftFlutterBarcodeScannerPlugin.scanMode = scanModeReceived
+        }else{
+            SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
         }
         
         pendingResult=result
@@ -147,7 +163,7 @@ class BarcodeScannerViewController: UIViewController {
     private lazy var xCor: CGFloat! = {
         return (screenSize.width - (screenSize.width*0.8))/2
     }()
-    private lazy var yCor: CGFloat! = {
+    private lazy var yCor: CGFloat! = {    
         return (screenSize.height - (screenSize.width*0.8))/2
     }()
     //Bottom view
@@ -190,8 +206,11 @@ class BarcodeScannerViewController: UIViewController {
             print("Failed to get the camera device")
             return
         }
-        
+        let screenHeight = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.width) : (screenSize.width/2)
         do {
+            
+            
+            
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
@@ -201,7 +220,7 @@ class BarcodeScannerViewController: UIViewController {
             }
             // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
             
-            captureMetadataOutput.rectOfInterest = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: (screenSize.width*0.8))
+            captureMetadataOutput.rectOfInterest = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight)
             if captureSession.outputs.isEmpty {
                 captureSession.addOutput(captureMetadataOutput)
             }
@@ -222,7 +241,7 @@ class BarcodeScannerViewController: UIViewController {
         
         let overlayPath = UIBezierPath(rect: view.bounds)
         
-        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: (screenSize.width*0.8)))
+        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight))
         overlayPath.append(transparentPath)
         overlayPath.usesEvenOddFillRule = true
         let fillLayer = CAShapeLayer()
@@ -236,14 +255,16 @@ class BarcodeScannerViewController: UIViewController {
         
         // Start video capture.
         captureSession.startRunning()
-        let scanRect = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: (screenSize.width*0.8))
+        
+        let scanRect = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight)
         let rectOfInterest = videoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: scanRect)
         if let rOI = rectOfInterest{
             captureMetadataOutput.rectOfInterest = rOI
         }
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
-        qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: (screenSize.width), height: (screenSize.width))
+        
+        qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: (screenSize.width), height: screenHeight)
         
         if let qrCodeFrameView = qrCodeFrameView {
             self.view.addSubview(qrCodeFrameView)
@@ -350,7 +371,9 @@ class BarcodeScannerViewController: UIViewController {
         scanLine.backgroundColor = hexStringToUIColor(hex: SwiftFlutterBarcodeScannerPlugin.lineColor) // green color
         scanlineRect = CGRect(x: xCor, y: yCor, width:(screenSize.width*0.8), height: 2)
         scanlineStartY = yCor
-        scanlineStopY = yCor + (screenSize.width*0.8)
+        scanlineStopY = yCor
+//        return (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.height) : (screenSize.height / 2)
+//        scanlineStopY = yCor + (screenSize.width*0.8)
     }
     
     

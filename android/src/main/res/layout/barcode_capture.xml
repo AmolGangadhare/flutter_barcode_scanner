@@ -33,7 +33,8 @@
             android:id="@+id/imgViewBarcodeCaptureUseFlash"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_barcode_flash_off" />
+            android:src="@drawable/ic_barcode_flash_off"
+            android:contentDescription="Flash button" />
     </LinearLayout>
 
     <Button

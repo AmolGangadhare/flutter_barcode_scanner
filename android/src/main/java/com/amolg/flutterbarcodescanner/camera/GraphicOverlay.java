@@ -29,6 +29,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
+import com.amolg.flutterbarcodescanner.BarcodeCaptureActivity;
 import com.amolg.flutterbarcodescanner.FlutterBarcodeScannerPlugin;
 import com.amolg.flutterbarcodescanner.constants.AppConstants;
 import com.amolg.flutterbarcodescanner.utils.Utils;
@@ -43,6 +44,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     private final Object mLock = new Object();
     private float mWidthScaleFactor = 1.0f;
     private float mHeightScaleFactor = 1.0f;
+
     private int mFacing = CameraSource.CAMERA_FACING_BACK;
     private Set<T> mGraphics = new HashSet<>();
 
@@ -92,8 +94,11 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
 
     public GraphicOverlay(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         rectWidth = AppConstants.BARCODE_RECT_WIDTH;
-        rectHeight = AppConstants.BARCODE_RECT_HEIGHT;
+        rectHeight = BarcodeCaptureActivity.SCAN_MODE == BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal()
+                ? AppConstants.BARCODE_RECT_HEIGHT : (int) (AppConstants.BARCODE_RECT_HEIGHT / 1.5);
+
         lineColor = Color.parseColor(FlutterBarcodeScannerPlugin.lineColor);
 
         lineWidth = AppConstants.BARCODE_LINE_WIDTH;
@@ -162,7 +167,6 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         Paint eraser = new Paint();
         eraser.setAntiAlias(true);
         eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-
 
         RectF rect = new RectF(left, top, Utils.dpToPx(getContext(), rectWidth) + left, Utils.dpToPx(getContext(), rectHeight) + top);
         canvas.drawRoundRect(rect, (float) cornerRadius, (float) cornerRadius, eraser);

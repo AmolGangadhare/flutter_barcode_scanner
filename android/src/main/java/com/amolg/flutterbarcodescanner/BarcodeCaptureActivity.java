@@ -31,11 +31,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.amolg.flutterbarcodescanner.constants.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -86,7 +88,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
     private ImageView imgViewBarcodeCaptureUseFlash;
     private Button btnBarcodeCaptureCancel;
-    private Camera cam = null;
+
+    public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
+
+    public enum SCAN_MODE_ENUM {
+        QR,
+        BARCODE
+    }
 
     enum USE_FLASH {
         ON,
@@ -94,7 +102,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     }
 
     private int flashStatus = USE_FLASH.OFF.ordinal();
-
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -104,6 +111,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         super.onCreate(icicle);
         try {
             setContentView(R.layout.barcode_capture);
+
             String buttonText = "";
             try {
                 buttonText = (String) getIntent().getStringExtra("cancelButtonText");

@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
+/// Scan mode which is either QR code or BARCODE
+enum ScanMode { QR, BARCODE }
+
 /// Flutter barcode scanner class that bridge the native classes to flutter project
 class FlutterBarcodeScanner {
   /// Create a method channel instance
@@ -17,8 +20,8 @@ class FlutterBarcodeScanner {
   /// lineColor is color of a line in scanning
   /// cancelButtonText is text of cancel button
   /// isShowFlashIcon is bool to show or hide flash icon
-  static Future<String> scanBarcode(
-      String lineColor, String cancelButtonText, bool isShowFlashIcon) async {
+  static Future<String> scanBarcode(String lineColor, String cancelButtonText,
+      bool isShowFlashIcon, ScanMode scanMode) async {
     if (null == cancelButtonText || cancelButtonText.isEmpty)
       cancelButtonText = "Cancel";
 
@@ -27,7 +30,8 @@ class FlutterBarcodeScanner {
       "lineColor": lineColor,
       "cancelButtonText": cancelButtonText,
       "isShowFlashIcon": isShowFlashIcon,
-      "isContinuousScan": false
+      "isContinuousScan": false,
+      "scanMode": scanMode.index
     };
 
     /// Get barcode scan result
