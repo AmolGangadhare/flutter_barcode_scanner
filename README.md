@@ -64,6 +64,9 @@ Here in `scanBarcode`,
  `isShowFlashIcon` is bool value used to show or hide the flash icon,
  
  `scanMode` is a enum in which user can pass any of `{ QR, BARCODE, DEFAULT }`, if nothing is passed it will consider a default value which will be `QR`.
+ It shows the graphics overlay like for barcode and QR.
+ 
+ NOTE: Currently, `scanMode` is just to show the graphics overlay for barcode and QR. Any of this mode selected will scan both QR and barcode. 
 
 ### Continuous scan
 * If you need to scan barcodes continuously without closing camera use `FlutterBarcodeScanner.getBarcodeStreamReceiver`
