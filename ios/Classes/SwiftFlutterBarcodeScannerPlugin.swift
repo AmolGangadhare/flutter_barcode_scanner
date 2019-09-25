@@ -5,6 +5,7 @@ import AVFoundation
 enum ScanMode:Int{
     case QR
     case BARCODE
+    case DEFAULT
     
     var index: Int {
         return rawValue
@@ -55,7 +56,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        var args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
+        let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
         if let colorCode = args["lineColor"] as? String{
             SwiftFlutterBarcodeScannerPlugin.lineColor = colorCode
         }else {
@@ -78,7 +79,11 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }
         
         if let scanModeReceived = args["scanMode"] as? Int {
-            SwiftFlutterBarcodeScannerPlugin.scanMode = scanModeReceived
+            if scanModeReceived == ScanMode.DEFAULT.index {
+                SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
+            }else{
+                SwiftFlutterBarcodeScannerPlugin.scanMode = scanModeReceived
+            }
         }else{
             SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
         }
@@ -86,6 +91,10 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         pendingResult=result
         let controller = BarcodeScannerViewController()
         controller.delegate = self
+        
+        if #available(iOS 13.0, *) {
+            controller.modalPresentationStyle = .fullScreen
+        }
         
         if checkCameraAvailability(){
             if checkForCameraPermission() {
@@ -206,11 +215,8 @@ class BarcodeScannerViewController: UIViewController {
             print("Failed to get the camera device")
             return
         }
-        let screenHeight = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.width) : (screenSize.width/2)
+        let screenHeight = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.width * 0.8) : (screenSize.width * 0.5)
         do {
-            
-            
-            
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
@@ -371,9 +377,10 @@ class BarcodeScannerViewController: UIViewController {
         scanLine.backgroundColor = hexStringToUIColor(hex: SwiftFlutterBarcodeScannerPlugin.lineColor) // green color
         scanlineRect = CGRect(x: xCor, y: yCor, width:(screenSize.width*0.8), height: 2)
         scanlineStartY = yCor
-        scanlineStopY = yCor
-//        return (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.height) : (screenSize.height / 2)
-//        scanlineStopY = yCor + (screenSize.width*0.8)
+        scanlineStopY = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index ? (yCor + (screenSize.width*0.8)) : (yCor + screenSize.width * 0.5))
+        
+        //  return (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.height) : (screenSize.height / 2)
+        //        scanlineStopY = yCor + (screenSize.width*0.8)
     }
     
     
@@ -389,7 +396,6 @@ class BarcodeScannerViewController: UIViewController {
     }
     
     
-    // MARK: - Helper methods
     private func launchApp(decodedURL: String) {
         if presentedViewController != nil {
             return

@@ -11,15 +11,26 @@
   <component name="ChangeListManager">
     <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/FlutterBarcodeScannerPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/FlutterBarcodeScannerPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/camera/GraphicOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/camera/GraphicOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/constants/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/constants/AppConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/res/layout/barcode_capture.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/res/layout/barcode_capture.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/FlutterBarcodeScannerPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/FlutterBarcodeScannerPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/flutter_barcode_scanner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/flutter_barcode_scanner.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/ios/flutter_barcode_scanner.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/ios/flutter_barcode_scanner.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/lib/flutter_barcode_scanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/lib/flutter_barcode_scanner.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/flutter_barcode_scanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_barcode_scanner.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -42,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+            <state relative-caret-position="285">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -51,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+            <state relative-caret-position="195">
+              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -60,47 +71,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+            <state relative-caret-position="270">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/flutter_barcode_scanner.dart">
+        <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="257" column="8" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -140,18 +121,18 @@
         <option value="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/FlutterBarcodeScannerPlugin.java" />
         <option value="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" />
         <option value="$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift" />
-        <option value="$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/CHANGELOG.md" />
-        <option value="$PROJECT_DIR$/lib/flutter_barcode_scanner.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec" />
+        <option value="$PROJECT_DIR$/CHANGELOG.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/lib/flutter_barcode_scanner.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1228" />
+    <option name="width" value="1280" />
     <option name="height" value="734" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -166,17 +147,6 @@
             <path>
               <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
               <item name="flutter_barcode_scanner" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flutter_barcode_scanner" type="462c0819:PsiDirectoryNode" />
-              <item name="ios" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flutter_barcode_scanner" type="462c0819:PsiDirectoryNode" />
-              <item name="ios" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="flutter_barcode_scanner" type="b2602c69:ProjectViewProjectNode" />
@@ -237,10 +207,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1228" height="734" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="734" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24283305" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19224556" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -453,55 +423,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+        <state relative-caret-position="3615">
+          <caret line="241" column="57" lean-forward="true" selection-start-line="241" selection-start-column="57" selection-end-line="241" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="405">
+          <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ios/Classes/SwiftFlutterBarcodeScannerPlugin.swift">
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="257" column="8" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
+        <state relative-caret-position="195">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios/flutter_barcode_scanner.podspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/flutter_barcode_scanner.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="495">
+          <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>

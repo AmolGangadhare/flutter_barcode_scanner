@@ -44,7 +44,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
     dependencies:
       ...
-      flutter_barcode_scanner: ^0.1.6
+      flutter_barcode_scanner: ^0.1.7
 
 ### One time scan
 1. You need to import the package first.
@@ -53,18 +53,26 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
     
 2. Then use the `scanBarcode` method to access barcode scanning.
     
-    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT,isShowFlashIcon);`
+    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE, CANCEL_BUTTON_TEXT, isShowFlashIcon, scanMode);`
 
-Here in `scanBarcode(COLOR_CODE,CANCEL_BUTTON_TEXT)` 
-`COLOR_CODE` is hex-color which is the color of line in barcode overlay you can pass color of your choice, 
-, `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language,
-`isShowFlashIcon` is bool value used to show or hide the flash icon.
+Here in `scanBarcode`,
+
+ `COLOR_CODE` is hex-color which is the color of line in barcode overlay you can pass color of your choice,
+ 
+ `CANCEL_BUTTON_TEXT` is a text of cancel button on screen you can pass text of your choice and language,
+ 
+ `isShowFlashIcon` is bool value used to show or hide the flash icon,
+ 
+ `scanMode` is a enum in which user can pass any of `{ QR, BARCODE, DEFAULT }`, if nothing is passed it will consider a default value which will be `QR`.
 
 ### Continuous scan
-* If you need to scan barcodes continuously without closing camera use
+* If you need to scan barcodes continuously without closing camera use `FlutterBarcodeScanner.getBarcodeStreamReceiver`
+params will be same like `FlutterBarcodeScanner.scanBarcode`
+e.g. 
+
 
 ```
-FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false)
+FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanMode.DEFAULT)
          .listen((barcode) { 
          /// barcode to be used
          });

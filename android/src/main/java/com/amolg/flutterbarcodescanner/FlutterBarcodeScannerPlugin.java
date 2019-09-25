@@ -131,7 +131,16 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 if (null == lineColor || lineColor.equalsIgnoreCase("")) {
                     lineColor = "#DC143C";
                 }
-                BarcodeCaptureActivity.SCAN_MODE = (int) arguments.get("scanMode");
+                if (null != arguments.get("scanMode")) {
+                    if ((int) arguments.get("scanMode") == BarcodeCaptureActivity.SCAN_MODE_ENUM.DEFAULT.ordinal()) {
+                        BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
+                    } else {
+                        BarcodeCaptureActivity.SCAN_MODE = (int) arguments.get("scanMode");
+                    }
+                } else {
+                    BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
+                }
+
                 isContinuousScan = (boolean) arguments.get("isContinuousScan");
 
                 startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);

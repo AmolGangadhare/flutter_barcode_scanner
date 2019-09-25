@@ -20,7 +20,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", true)
+    FlutterBarcodeScanner.getBarcodeStreamReceiver(
+            "#ff6666", "Cancel", true, ScanMode.BARCODE)
         .listen((barcode) => print(barcode));
   }
 
@@ -46,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -80,22 +81,16 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                            onPressed: () {
-                              initPlatformState();
-                            },
+                            onPressed: () => scanBarcodeNormal(),
                             child: Text("Start barcode scan")),
                         RaisedButton(
-                            onPressed: () {
-                              scanQR();
-                            },
+                            onPressed: () => scanQR(),
                             child: Text("Start QR scan")),
-                        Text('Scan result : $_scanBarcode\n',
-                            style: TextStyle(fontSize: 20)),
                         RaisedButton(
-                            onPressed: () {
-                              startBarcodeScanStream();
-                            },
-                            child: Text("Start barcode scan stream"))
+                            onPressed: () => startBarcodeScanStream(),
+                            child: Text("Start barcode scan stream")),
+                        Text('Scan result : $_scanBarcode\n',
+                            style: TextStyle(fontSize: 20))
                       ]));
             })));
   }

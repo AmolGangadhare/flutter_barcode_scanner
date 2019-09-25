@@ -1,3 +1,7 @@
+## 0.1.7
+
+* Enhancement: Issue #14, Added separate graphics overlay for Barcode and QR code.
+
 ## 0.1.6
 
 * Android: Issue #31 fix (Out of memory crash).

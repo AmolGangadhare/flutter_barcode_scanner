@@ -93,7 +93,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
     public enum SCAN_MODE_ENUM {
         QR,
-        BARCODE
+        BARCODE,
+        DEFAULT
     }
 
     enum USE_FLASH {
