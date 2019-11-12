@@ -83,7 +83,7 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanM
 
 ### Contribution:
 
- You can always contribute to this plugin by raising any issue or by PR.
+ You can always contribute to this plugin by raising any issue or by Pull Request.
  
 ### Contact:
 

@@ -21,7 +21,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     var pendingResult:FlutterResult!
     public static var isContinuousScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
-    public static var scanMode = ScanMode.QR.index;
+    public static var scanMode = ScanMode.QR.index
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -169,11 +169,15 @@ class BarcodeScannerViewController: UIViewController {
     private var topBottomMargin: CGFloat = 80
     private var scanLine: UIView = UIView()
     let screenSize = UIScreen.main.bounds
+    private var isOrientationPortrait = true
+    
     private lazy var xCor: CGFloat! = {
-        return (screenSize.width - (screenSize.width*0.8))/2
+        return self.isOrientationPortrait ? (screenSize.width - (screenSize.width*0.8))/2 :
+            (screenSize.height)/2
     }()
     private lazy var yCor: CGFloat! = {    
-        return (screenSize.height - (screenSize.width*0.8))/2
+        return self.isOrientationPortrait ? (screenSize.height - (screenSize.width*0.8))/2 :
+            (screenSize.height - (screenSize.height*0.8))/2
     }()
     //Bottom view
     private lazy var bottomView : UIView! = {
@@ -207,6 +211,8 @@ class BarcodeScannerViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.isOrientationPortrait = isLandscape
+        
         let captureMetadataOutput = AVCaptureMetadataOutput()
         setConstraintsForControls()
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -215,7 +221,15 @@ class BarcodeScannerViewController: UIViewController {
             print("Failed to get the camera device")
             return
         }
-        let screenHeight = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.width * 0.8) : (screenSize.width * 0.5)
+        var screenHeight:CGFloat
+        
+        if isOrientationPortrait {
+            screenHeight = (CGFloat)((SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.width * 0.8) : (screenSize.width * 0.5))
+            
+        } else {
+            screenHeight = (CGFloat)((SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.height * 0.6) : (screenSize.height * 0.5))
+        }
+        
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -226,7 +240,8 @@ class BarcodeScannerViewController: UIViewController {
             }
             // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
             
-            captureMetadataOutput.rectOfInterest = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight)
+            let captureRectWidth = self.isOrientationPortrait ? (screenSize.width*0.8):(screenSize.height*0.8)
+            captureMetadataOutput.rectOfInterest = CGRect(x: xCor, y: yCor, width: captureRectWidth, height: screenHeight)
             if captureSession.outputs.isEmpty {
                 captureSession.addOutput(captureMetadataOutput)
             }
@@ -244,10 +259,11 @@ class BarcodeScannerViewController: UIViewController {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer?.frame = view.layer.bounds
+        videoPreviewLayer?.connection?.videoOrientation = self.isOrientationPortrait ? AVCaptureVideoOrientation.portrait : AVCaptureVideoOrientation.landscapeRight
         
         let overlayPath = UIBezierPath(rect: view.bounds)
         
-        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight))
+        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight))
         overlayPath.append(transparentPath)
         overlayPath.usesEvenOddFillRule = true
         let fillLayer = CAShapeLayer()
@@ -262,7 +278,7 @@ class BarcodeScannerViewController: UIViewController {
         // Start video capture.
         captureSession.startRunning()
         
-        let scanRect = CGRect(x: xCor, y: yCor, width: (screenSize.width*0.8), height: screenHeight)
+        let scanRect = CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight)
         let rectOfInterest = videoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: scanRect)
         if let rOI = rectOfInterest{
             captureMetadataOutput.rectOfInterest = rOI
@@ -270,7 +286,7 @@ class BarcodeScannerViewController: UIViewController {
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
-        qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: (screenSize.width), height: screenHeight)
+        qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
         
         if let qrCodeFrameView = qrCodeFrameView {
             self.view.addSubview(qrCodeFrameView)
@@ -286,7 +302,19 @@ class BarcodeScannerViewController: UIViewController {
         self.drawLine()
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return isOrientationPortrait ? UIInterfaceOrientationMask.portrait : UIInterfaceOrientationMask.landscapeRight
+    }
     
+    private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
+        layer.videoOrientation = orientation
+    }
+    
+    var isLandscape: Bool {
+        return UIDevice.current.orientation.isValidInterfaceOrientation
+            ? UIDevice.current.orientation.isPortrait
+            : UIApplication.shared.statusBarOrientation.isPortrait
+    }
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -302,17 +330,17 @@ class BarcodeScannerViewController: UIViewController {
         bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0).isActive = true
         bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
-        bottomView.heightAnchor.constraint(equalToConstant:100.0).isActive=true
+        bottomView.heightAnchor.constraint(equalToConstant:self.isOrientationPortrait ? 100.0 : 70.0).isActive=true
         
         flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-40).isActive = true
-        flashIcon.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-        flashIcon.widthAnchor.constraint(equalToConstant: 50.0).isActive = true
+        flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        flashIcon.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        flashIcon.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         cancelButton.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        cancelButton.bottomAnchor.constraint(equalTo:view.bottomAnchor,constant:-40).isActive=true
+        cancelButton.bottomAnchor.constraint(equalTo:view.bottomAnchor,constant: 0).isActive=true
         cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:10).isActive = true
         
     }
@@ -375,14 +403,20 @@ class BarcodeScannerViewController: UIViewController {
     private func drawLine() {
         self.view.addSubview(scanLine)
         scanLine.backgroundColor = hexStringToUIColor(hex: SwiftFlutterBarcodeScannerPlugin.lineColor) // green color
-        scanlineRect = CGRect(x: xCor, y: yCor, width:(screenSize.width*0.8), height: 2)
+        scanlineRect = CGRect(x: xCor, y: yCor, width:self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: 2)
         scanlineStartY = yCor
-        scanlineStopY = (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index ? (yCor + (screenSize.width*0.8)) : (yCor + screenSize.width * 0.5))
         
-        //  return (SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index) ? (screenSize.height) : (screenSize.height / 2)
-        //        scanlineStopY = yCor + (screenSize.width*0.8)
+        var stopY:CGFloat
+        
+        if SwiftFlutterBarcodeScannerPlugin.scanMode == ScanMode.QR.index {
+            let w = self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.6)
+            stopY = (yCor + w)
+        } else {
+            let w = self.isOrientationPortrait ? (screenSize.width * 0.5) : (screenSize.height * 0.5)
+            stopY = (yCor + w)
+        }
+        scanlineStopY = stopY
     }
-    
     
     /// Animate scan line vertically
     private func moveVertically() {
@@ -394,7 +428,6 @@ class BarcodeScannerViewController: UIViewController {
             weakSelf!.center = CGPoint(x: weakSelf!.center.x, y: self.scanlineStopY)
         }, completion: nil)
     }
-    
     
     private func launchApp(decodedURL: String) {
         if presentedViewController != nil {

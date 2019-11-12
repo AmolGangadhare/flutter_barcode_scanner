@@ -18,7 +18,9 @@ package com.amolg.flutterbarcodescanner.camera;
 import android.Manifest;
 import android.content.Context;
 import android.content.res.Configuration;
+
 import androidx.annotation.RequiresPermission;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -132,8 +134,17 @@ public class CameraSourcePreview extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int width = 320;
-        int height = 240;
+
+        int height = 0, width = 0;
+
+        if (isPortraitMode()) {
+            width = bottom - top;
+            height = right - left;
+        } else {
+            width = right - left;
+            height = bottom - top;
+        }
+
         if (mCameraSource != null) {
             Size size = mCameraSource.getPreviewSize();
             if (size != null) {
