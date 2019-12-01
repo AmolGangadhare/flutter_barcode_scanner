@@ -75,4 +75,8 @@ class FlutterBarcodeScanner {
     }
     return _onBarcodeReceiver;
   }
+
+  static Future<bool> checkCameraPermission() {
+    return _channel.invokeMethod('checkCameraPermission');
+  }
 }

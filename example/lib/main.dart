@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _scanBarcode = 'Unknown';
+  String _cameraPermission = 'Unknown';
 
   @override
   void initState() {
@@ -68,6 +69,27 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> checkPermission() async {
+    String cameraPermissionRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      final hasPermission = await FlutterBarcodeScanner.checkCameraPermission();
+      print(hasPermission);
+      cameraPermissionRes = '$hasPermission';
+    } on PlatformException {
+      cameraPermissionRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _cameraPermission = '$cameraPermissionRes';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -89,8 +111,16 @@ class _MyAppState extends State<MyApp> {
                         RaisedButton(
                             onPressed: () => startBarcodeScanStream(),
                             child: Text("Start barcode scan stream")),
-                        Text('Scan result : $_scanBarcode\n',
-                            style: TextStyle(fontSize: 20))
+                        Text('Scan result: $_scanBarcode\n',
+                            style: TextStyle(fontSize: 20)),
+                        RaisedButton(
+                          onPressed: checkPermission,
+                          child: Text("Check camera permission"),
+                        ),
+                        Text(
+                          'Camera permission: $_cameraPermission\n',
+                          style: TextStyle(fontSize: 20),
+                        ),
                       ]));
             })));
   }
