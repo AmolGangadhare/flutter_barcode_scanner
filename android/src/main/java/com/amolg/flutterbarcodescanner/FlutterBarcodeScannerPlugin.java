@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 
+import androidx.core.app.ActivityCompat;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -121,6 +122,10 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         try {
             pendingResult = result;
 
+            if (call.method.equals("checkCameraPermission")) {
+                getCameraPermission();
+            }
+
             if (call.method.equals("scanBarcode")) {
                 if (!(call.arguments instanceof Map)) {
                     throw new IllegalArgumentException("Plugin not passing a map as parameter: " + call.arguments);
@@ -148,6 +153,13 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());
         }
+    }
+
+    private void getCameraPermission() {
+        int rc = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        boolean hasPermission = rc == PackageManager.PERMISSION_GRANTED;
+        
+        pendingResult.success(hasPermission);
     }
 
     private void startBarcodeScannerActivityView(String buttonText, boolean isContinuousScan) {
