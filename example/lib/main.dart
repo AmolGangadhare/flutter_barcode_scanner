@@ -25,6 +25,34 @@ class _MyAppState extends State<MyApp> {
         .listen((barcode) => print(barcode));
   }
 
+  startStoreLikeScan() async {
+    StreamSubscription subscription;
+    Timer timer;
+
+    subscription = FlutterBarcodeScanner.getBarcodeStreamReceiver(
+            "#ff6666", "Cancel", true, ScanMode.BARCODE)
+        .transform(
+      StreamTransformer.fromHandlers(
+        handleData: (data, sink) {
+          if (timer == null) {
+            sink.add(data);
+            timer = Timer(Duration(seconds: 1), () {
+              timer = null;
+            });
+          }
+        },
+      ),
+    ).listen((barcode) {
+      if ((barcode ?? '').isEmpty || barcode == '-1') {
+        subscription.cancel();
+
+        return;
+      }
+
+      print(barcode);
+    });
+  }
+
   Future<void> scanQR() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
@@ -89,6 +117,10 @@ class _MyAppState extends State<MyApp> {
                         RaisedButton(
                             onPressed: () => startBarcodeScanStream(),
                             child: Text("Start barcode scan stream")),
+                        RaisedButton(
+                          onPressed: () => startStoreLikeScan(),
+                          child: Text("Start store like scan"),
+                        ),
                         Text('Scan result : $_scanBarcode\n',
                             style: TextStyle(fontSize: 20))
                       ]));
