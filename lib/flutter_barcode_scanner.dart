@@ -48,7 +48,7 @@ class FlutterBarcodeScanner {
 
   /// This method allows continuous barcode scanning without closing camera.
   /// It will return stream of barcode strings.
-  /// Parameters will be same as #scanBarcode
+  /// Parameters will e same as #scanBarcode
   static Stream getBarcodeStreamReceiver(String lineColor,
       String cancelButtonText, bool isShowFlashIcon, ScanMode scanMode) {
     if (null == cancelButtonText || cancelButtonText.isEmpty)

@@ -8,8 +8,9 @@ A plugin for Flutter apps that adds barcode scanning support on both Android and
 
 
 ## Try example
-Just clone the repository, open the project in `Android Studio/ VS Code`, open `pubspec.yaml` and click on `Packages get`.
-Connect device and hit `run`. To run on iPhone you need to run from `Xcode first time` and just make `pod install` in `example/ios`.
+Just clone or download the repository, open the project in `Android Studio/ VS Code`, open `pubspec.yaml` and click on `Packages get`.
+Connect device and hit `run`. 
+To run on iPhone you need to run from Xcode first time and just make `pod install` in `example/ios` then run from Xcode.
 
 ## Getting Started 
 Follow the steps for Android and iOS
@@ -25,35 +26,62 @@ PLEASE FOLLOW **iOS** STEPS CAREFULLY
 Deployment target : 10
 
 #### 1. Fresh start: 
-Create new flutter app. Please check for Include swift support for iOS code. After creating project open ios project in XCode and set minimum **deployment target to 10**. Now proceed to **How to use**
-    
+ 1. Create a new flutter project. Please check for **Include swift support for iOS code**.
+ 2. After creating new flutter project open `/ios` project in Xcode and set minimum **deployment target to 10**
+    and set **Swift version to 5**.
+ 3. After setting up the deployment target and swift version, close the Xcode then run **pod install** in `/ios` in flutter project.
+ 
+ You have done with basic configuration now proceed to section **How to use**.
+ 
 #### 2. Adding to existing flutter app: 
-As iOS code is written in Swift so you need to convert your existing iOS codebase to swift (or if you are creating a new project from Android Studio make sure to check `Include Swift support for iOS code`.) 
-To do that you can create a new project with same name in different location and then just copy iOS folder to existing.(if any changes made before make sure to add these in iOS(swift)).
-After making codebase in swift make sure that the Swift version is `5` as the code for iOS is written in Swift 5. 
-To use on iOS, open the Xcode and add camera usage description in `Info.plist`. 
+#### If your existing ios code is **Swift** then you just need to do following.
+  1. Set **minimum deployment target to 10** and set **Swift version to 5**.
+  2. Close the Xcode and run **pod install** in `/ios` in flutter project.
+  3. Now proceed to section **How to use**.
+ 
+#### If your existing ios code is **Objective-C** then you need to do following.
+  1. Create a new flutter project with same name at different location (Don't forget to check **Include swift support for iOS code** while creating) 
+  2. Just copy newly created `/ios` folder from project and replace with existing `/ios`.
+  3. Open ios project in Xcode and set **minimum deployment target to 10** and set **Swift version to 5**.
+  4. Run **pod install** in `/ios` 
+    
+**Note: If you did any changes in ios part before, you might need to make these configuration again**
+
+## How to use ?
+
+To use on iOS, you will need to add the camera usage description.
+To do that open the Xcode and add camera usage description in `Info.plist`. 
 
 ```
 <key>NSCameraUsageDescription</key>
 <string>Camera permission is required for barcode scanning.</string>
 ```
 
-## How to use ?
 
 After making the changes in Android ans iOS add flutter_barcode_scanner to `pubspec.yaml`
-    
-    dependencies:
-      ...
-      flutter_barcode_scanner: ^0.1.7
+```  
+dependencies:
+  ...
+  flutter_barcode_scanner: ^0.1.7
+```
 
 ### One time scan
 1. You need to import the package first.
 
-    `import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';`
+```
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+```
+
     
 2. Then use the `scanBarcode` method to access barcode scanning.
     
-    `String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(COLOR_CODE, CANCEL_BUTTON_TEXT, isShowFlashIcon, scanMode);`
+```
+String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+                                                    COLOR_CODE, 
+                                                    CANCEL_BUTTON_TEXT, 
+                                                    isShowFlashIcon, 
+                                                    scanMode);
+```
 
 Here in `scanBarcode`,
 
@@ -83,8 +111,15 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanM
 
 ### Contribution:
 
- You can always contribute to this plugin by raising any issue or by Pull Request.
+would :heart: to see any contribution.
  
 ### Contact:
+
+
+<p>
+<a href="https://github.com/AmolGangadhare"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height="33" style="max-width:100%;"></a>
+<a href="https://stackoverflow.com/users/9823185/amol-gangadhare" rel="nofollow"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36" style="max-width:100%;"></a>
+<a href="https://www.linkedin.com/in/amolgangadhare/" rel="nofollow"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36" style="max-width:100%;"></a>
+</p>
 
 E-mail: amol.gangadhare@gmail.com
