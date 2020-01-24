@@ -58,30 +58,6 @@ public class CameraSource {
     private static final int DUMMY_TEXTURE_NAME = 100;
     private static final float ASPECT_RATIO_TOLERANCE = 0.01f;
 
-    @StringDef({
-            Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
-            Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
-            Camera.Parameters.FOCUS_MODE_AUTO,
-            Camera.Parameters.FOCUS_MODE_EDOF,
-            Camera.Parameters.FOCUS_MODE_FIXED,
-            Camera.Parameters.FOCUS_MODE_INFINITY,
-            Camera.Parameters.FOCUS_MODE_MACRO
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface FocusMode {
-    }
-
-    @StringDef({
-            Camera.Parameters.FLASH_MODE_ON,
-            Camera.Parameters.FLASH_MODE_OFF,
-            Camera.Parameters.FLASH_MODE_AUTO,
-            Camera.Parameters.FLASH_MODE_RED_EYE,
-            Camera.Parameters.FLASH_MODE_TORCH
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface FlashMode {
-    }
-
     private Context mContext;
     private final Object mCameraLock = new Object();
     private Camera mCamera;
@@ -118,6 +94,31 @@ public class CameraSource {
      * native code later (avoids a potential copy).
      */
     private Map<byte[], ByteBuffer> mBytesToByteBuffer = new HashMap<>();
+
+
+    @StringDef({
+            Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
+            Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
+            Camera.Parameters.FOCUS_MODE_AUTO,
+            Camera.Parameters.FOCUS_MODE_EDOF,
+            Camera.Parameters.FOCUS_MODE_FIXED,
+            Camera.Parameters.FOCUS_MODE_INFINITY,
+            Camera.Parameters.FOCUS_MODE_MACRO
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface FocusMode {
+    }
+
+    @StringDef({
+            Camera.Parameters.FLASH_MODE_ON,
+            Camera.Parameters.FLASH_MODE_OFF,
+            Camera.Parameters.FLASH_MODE_AUTO,
+            Camera.Parameters.FLASH_MODE_RED_EYE,
+            Camera.Parameters.FLASH_MODE_TORCH
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface FlashMode {
+    }
 
     /**
      * Builder for configuring and creating an associated camera source.
@@ -732,7 +733,6 @@ public class CameraSource {
                 if (parameters.getSupportedFlashModes().contains(
                         mFlashMode)) {
                     parameters.setFlashMode(mFlashMode);
-                } else {
                 }
             }
         }

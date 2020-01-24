@@ -31,13 +31,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import com.amolg.flutterbarcodescanner.constants.AppConstants;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -66,7 +64,7 @@ import java.io.IOException;
  * size, and ID of each barcode.
  */
 public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener, View.OnClickListener {
-    private static final String TAG = BarcodeCaptureActivity.class.getSimpleName();
+
     // intent request code to handle updating play services if needed.
     private static final int RC_HANDLE_GMS = 9001;
 
@@ -74,8 +72,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
     // constants used to pass extra data in the intent
-    public static final String AutoFocus = "AutoFocus";
-    public static final String UseFlash = "UseFlash";
     public static final String BarcodeObject = "Barcode";
 
     private CameraSource mCameraSource;
@@ -87,7 +83,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private GestureDetector gestureDetector;
 
     private ImageView imgViewBarcodeCaptureUseFlash;
-    private Button btnBarcodeCaptureCancel;
 
     public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
 
@@ -121,7 +116,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
             }
             imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
-            btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
+            Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
             btnBarcodeCaptureCancel.setText(buttonText);
             btnBarcodeCaptureCancel.setOnClickListener(this);
             imgViewBarcodeCaptureUseFlash.setOnClickListener(this);

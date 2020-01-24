@@ -22,17 +22,14 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ImageView;
 
 
 import com.amolg.flutterbarcodescanner.BarcodeCaptureActivity;
 import com.amolg.flutterbarcodescanner.FlutterBarcodeScannerPlugin;
 import com.amolg.flutterbarcodescanner.constants.AppConstants;
-import com.amolg.flutterbarcodescanner.utils.Utils;
+import com.amolg.flutterbarcodescanner.utils.AppUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,8 +39,7 @@ import java.util.Vector;
 
 public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     private final Object mLock = new Object();
-    private float mWidthScaleFactor = 1.0f;
-    private float mHeightScaleFactor = 1.0f;
+    private float mWidthScaleFactor = 1.0f, mHeightScaleFactor = 1.0f;
 
     private int mFacing = CameraSource.CAMERA_FACING_BACK;
     private Set<T> mGraphics = new HashSet<>();
@@ -52,10 +48,8 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
      * Custom added values for overlay
      */
     private float left, top, endY;
-    private int rectWidth, rectHeight;
-    private int frames;
+    private int rectWidth, rectHeight, frames, lineColor, lineWidth;
     private boolean revAnimation;
-    private int lineColor, lineWidth;
 
 
     public static abstract class Graphic {
@@ -123,8 +117,8 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        left = (w - Utils.dpToPx(getContext(), rectWidth)) / 2;
-        top = (h - Utils.dpToPx(getContext(), rectHeight)) / 2;
+        left = (w - AppUtil.dpToPx(getContext(), rectWidth)) / 2;
+        top = (h - AppUtil.dpToPx(getContext(), rectHeight)) / 2;
         endY = top;
         super.onSizeChanged(w, h, oldw, oldh);
     }
@@ -168,7 +162,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         eraser.setAntiAlias(true);
         eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
-        RectF rect = new RectF(left, top, Utils.dpToPx(getContext(), rectWidth) + left, Utils.dpToPx(getContext(), rectHeight) + top);
+        RectF rect = new RectF(left, top, AppUtil.dpToPx(getContext(), rectWidth) + left, AppUtil.dpToPx(getContext(), rectHeight) + top);
         canvas.drawRoundRect(rect, (float) cornerRadius, (float) cornerRadius, eraser);
 
         // draw horizontal line
@@ -177,7 +171,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         line.setStrokeWidth(Float.valueOf(lineWidth));
 
         // draw the line to product animation
-        if (endY >= top + Utils.dpToPx(getContext(), rectHeight) + frames) {
+        if (endY >= top + AppUtil.dpToPx(getContext(), rectHeight) + frames) {
             revAnimation = true;
         } else if (endY == top + frames) {
             revAnimation = false;
@@ -189,7 +183,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         } else {
             endY += frames;
         }
-        canvas.drawLine(left, endY, left + Utils.dpToPx(getContext(), rectWidth), endY, line);
+        canvas.drawLine(left, endY, left + AppUtil.dpToPx(getContext(), rectWidth), endY, line);
         invalidate();
     }
 }
