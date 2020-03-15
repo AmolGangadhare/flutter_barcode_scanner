@@ -1,3 +1,6 @@
+
+
+
 ## 0.1.7
 
 * Enhancement: Issue #14, Added separate graphics overlay for Barcode and QR code.
