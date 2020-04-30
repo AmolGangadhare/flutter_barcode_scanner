@@ -1,3 +1,9 @@
+## 1.0.0
+
+* Enhancement: Fixes mentioned issues #60, #59, #55, #53, #49, #43, #41, #37, #65, #63, #64, #71, #79.
+* Android: New API migration.
+* iOS: Now supports landscape mode in scanning.
+
 ## 0.1.7
 
 * Enhancement: Issue #14, Added separate graphics overlay for Barcode and QR code.

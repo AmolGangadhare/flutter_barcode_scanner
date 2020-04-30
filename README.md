@@ -62,7 +62,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
 ```  
 dependencies:
   ...
-  flutter_barcode_scanner: ^0.1.7
+  flutter_barcode_scanner: ^1.0.0
 ```
 
 ### One time scan
