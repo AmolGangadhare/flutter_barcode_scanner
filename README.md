@@ -23,11 +23,11 @@ PLEASE FOLLOW **iOS** STEPS CAREFULLY
 
 ### iOS - Requires Swift support
 
-Deployment target : 10
+Deployment target : 11
 
 #### 1. Fresh start: 
  1. Create a new flutter project. Please check for **Include swift support for iOS code**.
- 2. After creating new flutter project open `/ios` project in Xcode and set minimum **deployment target to 10**
+ 2. After creating new flutter project open `/ios` project in Xcode and set minimum **deployment target to 11**
     and set **Swift version to 5**.
  3. After setting up the deployment target and swift version, close the Xcode then run **pod install** in `/ios` in flutter project.
  
@@ -42,7 +42,7 @@ Deployment target : 10
 #### If your existing ios code is **Objective-C** then you need to do following.
   1. Create a new flutter project with same name at different location (Don't forget to check **Include swift support for iOS code** while creating) 
   2. Just copy newly created `/ios` folder from project and replace with existing `/ios`.
-  3. Open ios project in Xcode and set **minimum deployment target to 10** and set **Swift version to 5**.
+  3. Open ios project in Xcode and set **minimum deployment target to 11** and set **Swift version to 5**.
   4. Run **pod install** in `/ios` 
     
 **Note: If you did any changes in ios part before, you might need to make these configuration again**
@@ -62,7 +62,7 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
 ```  
 dependencies:
   ...
-  flutter_barcode_scanner: ^1.0.0
+  flutter_barcode_scanner: ^1.0.1
 ```
 
 ### One time scan
@@ -111,7 +111,7 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanM
 
 ### Contribution:
 
-would :heart: to see any contribution.
+would :heart: to see any contribution, if you like :star: repo
  
 ### Contact:
 

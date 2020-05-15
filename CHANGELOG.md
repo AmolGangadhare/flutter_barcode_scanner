@@ -1,3 +1,8 @@
+## 1.0.1
+
+* Merge PR #90
+* iOS: Issue #82 fix 
+
 ## 1.0.0
 
 * Enhancement: Fixes mentioned issues #60, #59, #55, #53, #49, #43, #41, #37, #65, #63, #64, #71, #79.
