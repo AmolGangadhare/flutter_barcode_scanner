@@ -2,6 +2,7 @@
 
 * Merge PR #90
 * iOS: Issue #82 fix 
+* Android: Issue #62 fix
 
 ## 1.0.0
 
