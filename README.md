@@ -111,8 +111,27 @@ FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanM
 
 ### Contribution:
 
-would :heart: to see any contribution, if you like :star: repo
- 
+would :heart: to see any contribution 
+
+### Appreciate:
+If you like my work :star: repo also you can appreciate by
+
+<p>
+ <table style="border-spacing: 5px 10px;">
+
+ <tr>
+  <td>
+<a href="https://www.buymeacoffee.com/AmolGangadhare"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="max-width:90%;" width="200" height="60"></a>
+</td>
+
+  <td style="margin: 10px">
+<a href="https://www.paypal.me/AmolGangadhareIN"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png" alt="PayPal Logo"
+style="max-width:90%;" width="200" height="60">
+ </td>
+ </tr>
+ </table>
+</p> 
+
 ### Contact:
 
 
