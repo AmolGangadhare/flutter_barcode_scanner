@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.1+1
   flutter_plugin_android_lifecycle: ^2.0.0-nullsafety
 
 dev_dependencies:
