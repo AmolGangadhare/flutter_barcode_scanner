@@ -19,7 +19,7 @@ dev_dependencies:
   flutter_barcode_scanner:
     path: ../
 
-  pedantic: ^1.9.2
+  pedantic: ^1.10.0-nullsafety.3
 
 flutter:
   uses-material-design: true
