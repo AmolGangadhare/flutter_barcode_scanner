@@ -9,10 +9,10 @@ enum ScanMode { QR, BARCODE, DEFAULT }
 class FlutterBarcodeScanner {
   /// Create a method channel instance
   static const MethodChannel _channel =
-      const MethodChannel('flutter_barcode_scanner');
+      MethodChannel('flutter_barcode_scanner');
 
   static const EventChannel _eventChannel =
-      const EventChannel('flutter_barcode_scanner_receiver');
+      EventChannel('flutter_barcode_scanner_receiver');
 
   static Stream _onBarcodeReceiver;
 
@@ -22,27 +22,24 @@ class FlutterBarcodeScanner {
   /// isShowFlashIcon is bool to show or hide flash icon
   static Future<String> scanBarcode(String lineColor, String cancelButtonText,
       bool isShowFlashIcon, ScanMode scanMode) async {
-    if (null == cancelButtonText || cancelButtonText.isEmpty)
-      cancelButtonText = "Cancel";
-
-    if (scanMode == null) {
-      scanMode = ScanMode.QR;
+    if (null == cancelButtonText || cancelButtonText.isEmpty) {
+      cancelButtonText = 'Cancel';
     }
+
+    scanMode ??= ScanMode.QR;
 
     /// create params to be pass to plugin
     Map params = <String, dynamic>{
-      "lineColor": lineColor,
-      "cancelButtonText": cancelButtonText,
-      "isShowFlashIcon": isShowFlashIcon,
-      "isContinuousScan": false,
-      "scanMode": scanMode.index
+      'lineColor': lineColor,
+      'cancelButtonText': cancelButtonText,
+      'isShowFlashIcon': isShowFlashIcon,
+      'isContinuousScan': false,
+      'scanMode': scanMode.index
     };
 
     /// Get barcode scan result
-    String barcodeResult = await _channel.invokeMethod('scanBarcode', params);
-    if (null == barcodeResult) {
-      barcodeResult = "";
-    }
+    final barcodeResult =
+        await _channel.invokeMethod('scanBarcode', params) ?? '';
     return barcodeResult;
   }
 
@@ -51,28 +48,25 @@ class FlutterBarcodeScanner {
   /// Parameters will e same as #scanBarcode
   static Stream getBarcodeStreamReceiver(String lineColor,
       String cancelButtonText, bool isShowFlashIcon, ScanMode scanMode) {
-    if (null == cancelButtonText || cancelButtonText.isEmpty)
-      cancelButtonText = "Cancel";
-
-    if (scanMode == null) {
-      scanMode = ScanMode.QR;
+    if (null == cancelButtonText || cancelButtonText.isEmpty) {
+      cancelButtonText = 'Cancel';
     }
+
+    scanMode ??= ScanMode.QR;
 
     /// create params to be pass to plugin
     Map params = <String, dynamic>{
-      "lineColor": lineColor,
-      "cancelButtonText": cancelButtonText,
-      "isShowFlashIcon": isShowFlashIcon,
-      "isContinuousScan": true,
-      "scanMode": scanMode.index
+      'lineColor': lineColor,
+      'cancelButtonText': cancelButtonText,
+      'isShowFlashIcon': isShowFlashIcon,
+      'isContinuousScan': true,
+      'scanMode': scanMode.index
     };
 
     /// Invoke method to open camera
     /// and then create event channel which will return stream
     _channel.invokeMethod('scanBarcode', params);
-    if (_onBarcodeReceiver == null) {
-      _onBarcodeReceiver = _eventChannel.receiveBroadcastStream();
-    }
+    _onBarcodeReceiver ??= _eventChannel.receiveBroadcastStream();
     return _onBarcodeReceiver;
   }
 }
