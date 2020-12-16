@@ -1,16 +1,16 @@
 name: flutter_barcode_scanner_example
 description: Demonstrates how to use the flutter_barcode_scanner plugin for Android and iOS.
 publish_to: 'none'
-version: 1.0.1
+version: 2.0.0-nullsafety.0
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  flutter_plugin_android_lifecycle: ^1.0.7
+  cupertino_icons: ^1.0.0
+  flutter_plugin_android_lifecycle: ^2.0.0-nullsafety
 
 dev_dependencies:
   flutter_test:
