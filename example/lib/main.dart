@@ -80,13 +80,13 @@ class _MyAppState extends State<MyApp> {
                       direction: Axis.vertical,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        RaisedButton(
+                        ElevatedButton(
                             onPressed: () => scanBarcodeNormal(),
                             child: Text('Start barcode scan')),
-                        RaisedButton(
+                        ElevatedButton(
                             onPressed: () => scanQR(),
                             child: Text('Start QR scan')),
-                        RaisedButton(
+                        ElevatedButton(
                             onPressed: () => startBarcodeScanStream(),
                             child: Text('Start barcode scan stream')),
                         Text('Scan result : $_scanBarcode\n',
