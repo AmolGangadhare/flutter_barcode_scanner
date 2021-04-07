@@ -26,6 +26,21 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/black">
 
+        <Button
+            android:id="@+id/btnSwitchCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/ic_switch_camera"
+            android:drawableLeft="@drawable/ic_switch_camera" />
+
         <ImageView
             android:id="@+id/imgViewBarcodeCaptureUseFlash"
             android:layout_width="40dp"
