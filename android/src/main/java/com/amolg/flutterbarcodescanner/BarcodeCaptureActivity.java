@@ -83,6 +83,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private GestureDetector gestureDetector;
 
     private ImageView imgViewBarcodeCaptureUseFlash;
+    private ImageView imgViewSwitchCamera;
 
     public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
 
@@ -110,29 +111,35 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
             String buttonText = "";
             try {
-                buttonText = (String) getIntent().getStringExtra("cancelButtonText");
-            } catch (Exception e) {
-                buttonText = "Cancel";
-                Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
-            }
-            imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
-            Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
-            btnBarcodeCaptureCancel.setText(buttonText);
-            btnBarcodeCaptureCancel.setOnClickListener(this);
-            imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
-            imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
-            mPreview = findViewById(R.id.preview);
-            mGraphicOverlay = findViewById(R.id.graphicOverlay);
+                    buttonText = (String) getIntent().getStringExtra("cancelButtonText");
+        } catch (Exception e) {
+            buttonText = "Cancel";
+            Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
+        }
 
-            // read parameters from the intent used to launch the activity.
-            boolean autoFocus = true;
-            boolean useFlash = false;
+        Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
+        btnBarcodeCaptureCancel.setText(buttonText);
+        btnBarcodeCaptureCancel.setOnClickListener(this);
 
-            // Check for the camera permission before accessing the camera.  If the
-            // permission is not granted yet, request permission.
-            int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
+        imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
+        imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
+
+        imgViewSwitchCamera = findViewById(R.id.imgViewSwitchCamera);
+        imgViewSwitchCamera.setOnClickListener(this);
+
+        mPreview = findViewById(R.id.preview);
+        mGraphicOverlay = findViewById(R.id.graphicOverlay);
+
+        // read parameters from the intent used to launch the activity.
+        boolean autoFocus = true;
+        boolean useFlash = false;
+
+        // Check for the camera permission before accessing the camera.  If the
+        // permission is not granted yet, request permission.
+        int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
             if (rc == PackageManager.PERMISSION_GRANTED) {
-                createCameraSource(autoFocus, useFlash);
+                createCameraSource(autoFocus, useFlash, CameraSource.CAMERA_FACING_BACK);
             } else {
                 requestCameraPermission();
             }
@@ -193,7 +200,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
      * the constant.
      */
     @SuppressLint("InlinedApi")
-    private void createCameraSource(boolean autoFocus, boolean useFlash) {
+    private void createCameraSource(boolean autoFocus, boolean useFlash, int cameraFacing) {
         Context context = getApplicationContext();
 
         // A barcode detector is created to track barcodes.  An associated multi-processor instance
@@ -220,9 +227,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         // to other detection examples to enable the barcode detector to detect small barcodes
         // at long distances.
         CameraSource.Builder builder = new CameraSource.Builder(getApplicationContext(), barcodeDetector)
-                .setFacing(CameraSource.CAMERA_FACING_BACK)
+                .setFacing(cameraFacing)
                 .setRequestedPreviewSize(1600, 1024)
-                .setRequestedFps(15.0f);
+                .setRequestedFps(15.0f)
+                .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null);
 
         // make sure that auto focus is an available option
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -230,9 +238,12 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                     autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
         }
 
-        mCameraSource = builder
-                .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
-                .build();
+        // Stop & release current camera source before creating a new one.
+        if (mCameraSource != null) {
+            mCameraSource.stop();
+            mCameraSource.release();
+        }
+        mCameraSource = builder.build();
     }
 
     /**
@@ -296,7 +307,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             // we have permission, so create the camerasource
             boolean autoFocus = true;
             boolean useFlash = false;
-            createCameraSource(autoFocus, useFlash);
+            createCameraSource(autoFocus, useFlash, CameraSource.CAMERA_FACING_BACK);
             return;
         }
 
@@ -406,7 +417,26 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             barcode.displayValue = "-1";
             FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
             finish();
+        } else if (i == R.id.imgViewSwitchCamera) {
+            int currentFacing = mCameraSource.getCameraFacing();
+            boolean autoFocus = mCameraSource.getFocusMode() != null;
+            boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();
+            createCameraSource(autoFocus, useFlash, getInverseCameraFacing(currentFacing));
+            startCameraSource();
         }
+    }
+
+    private int getInverseCameraFacing(int cameraFacing) {
+        if (cameraFacing == CameraSource.CAMERA_FACING_FRONT) {
+            return CameraSource.CAMERA_FACING_BACK;
+        }
+
+        if (cameraFacing == CameraSource.CAMERA_FACING_BACK) {
+            return CameraSource.CAMERA_FACING_FRONT;
+        }
+
+        // Fallback to camera at the back.
+        return CameraSource.CAMERA_FACING_BACK;
     }
 
     /**

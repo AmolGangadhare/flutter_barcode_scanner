@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_barcode_scanner: 49cd22fac3304077a6c1672f63bee4a2572ffd85
+  flutter_barcode_scanner: f0728a5947e9a9e168fb888afa70d6a4d1c71a33
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

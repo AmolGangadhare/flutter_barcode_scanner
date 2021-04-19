@@ -27,6 +27,18 @@
         android:background="@android:color/black">
 
         <ImageView
+            android:id="@+id/imgViewSwitchCamera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="Switch camera"
+            android:src="@drawable/ic_switch_camera" />
+
+        <ImageView
             android:id="@+id/imgViewBarcodeCaptureUseFlash"
             android:layout_width="40dp"
             android:layout_height="40dp"
