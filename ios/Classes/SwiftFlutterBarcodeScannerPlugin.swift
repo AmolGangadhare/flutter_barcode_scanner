@@ -385,33 +385,62 @@ class BarcodeScannerViewController: UIViewController {
     /// Flash button click event listener
     @IBAction private func flashButtonClicked() {
         if #available(iOS 10.0, *) {
-            if flashIcon.image(for: .normal) == UIImage(named: "ic_flash_off", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil){
-                flashIcon.setImage(UIImage(named: "ic_flash_on", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for:.normal)
-            }else{
-                flashIcon.setImage(UIImage(named: "ic_flash_off", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for:.normal)
-            }
             toggleFlash()
         } else {
             /// Handle further checks
         }
     }
     
-    /// Toggle flash and change flash icon
-    func toggleFlash() {
-        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
-        guard device.hasTorch else { return }
+    private func flashIconOff() {
+        flashIcon.setImage(UIImage(named: "ic_flash_off", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for:.normal)
+    }
+    
+    private func flashIconOn() {
+        flashIcon.setImage(UIImage(named: "ic_flash_on", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for:.normal)
+    }
+    
+    private func setFlashStatus(device: AVCaptureDevice, mode: AVCaptureDevice.TorchMode) {
+        guard device.hasTorch else {
+            flashIconOff()
+            return
+        }
         
         do {
             try device.lockForConfiguration()
             
-            if (device.torchMode == AVCaptureDevice.TorchMode.on) {
+            if (mode == .off) {
                 device.torchMode = AVCaptureDevice.TorchMode.off
+                flashIconOff()
             } else {
+                // Treat .auto & .on equally.
                 do {
                     try device.setTorchModeOn(level: 1.0)
+                    flashIconOn()
                 } catch {
                     print(error)
                 }
+            }
+            
+            device.unlockForConfiguration()
+        } catch {
+            print(error)
+        }
+    }
+    
+    /// Toggle flash and change flash icon
+    func toggleFlash() {
+        guard let device = getCaptureDeviceFromCurrentSession(session: captureSession) else {
+            flashIconOff()
+            return
+        }
+        
+        do {
+            try device.lockForConfiguration()
+            
+            if (device.torchMode == AVCaptureDevice.TorchMode.off) {
+                setFlashStatus(device: device, mode: .on)
+            } else {
+                setFlashStatus(device: device, mode: .off)
             }
             
             device.unlockForConfiguration()
@@ -447,10 +476,18 @@ class BarcodeScannerViewController: UIViewController {
             // Replace current input with the new one.
             captureSession.removeInput(currentInput)
             captureSession.addInput(newInput)
+            // Disable flash by default
+            setFlashStatus(device: device, mode: .off)
         } catch let error {
             print(error)
             return
         }
+    }
+    
+    private func getCaptureDeviceFromCurrentSession(session: AVCaptureSession) -> AVCaptureDevice? {
+        // Get the current active input.
+        guard let currentInput = captureSession.inputs.first as? AVCaptureDeviceInput else { return nil }
+        return currentInput.device;
     }
     
     private func getCaptureDeviceByPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
