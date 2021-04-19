@@ -232,6 +232,11 @@ class BarcodeScannerViewController: UIViewController {
         super.viewWillAppear(animated)
         self.moveVertically()
     }
+
+    override public func viewDidDisappear(_ animated: Bool){
+        // Stop video capture
+        captureSession.stopRunning()
+    }
     
     // Init UI components needed
     func initUIComponents(){

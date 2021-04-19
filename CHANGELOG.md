@@ -1,3 +1,8 @@
+## 1.0.2
+
+* Android: Fixes #137 and #132
+* iOS: Fixes #97
+
 ## 1.0.1
 
 * Merge PR #90
