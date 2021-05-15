@@ -29,12 +29,10 @@ import com.google.android.gms.vision.barcode.Barcode;
 class BarcodeTrackerFactory implements MultiProcessor.Factory<Barcode> {
     private GraphicOverlay<BarcodeGraphic> mGraphicOverlay;
     private Context mContext;
-    private Tracker<Barcode> tracker;
 
     public BarcodeTrackerFactory(GraphicOverlay<BarcodeGraphic> mGraphicOverlay, Context mContext) {
         this.mGraphicOverlay = mGraphicOverlay;
         this.mContext = mContext;
-        this.tracker = new Tracker<Barcode>();
     }
 
     @Override
@@ -43,7 +41,4 @@ class BarcodeTrackerFactory implements MultiProcessor.Factory<Barcode> {
         return new BarcodeGraphicTracker(mGraphicOverlay, graphic, mContext);
     }
 
-    public Tracker<Barcode> getTracker(){
-        return tracker;
-    }
 }
