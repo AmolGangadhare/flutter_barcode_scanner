@@ -27,7 +27,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="Added Central Barcode Focusing 3" />
+    <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="Added Central Barcode Focusing 4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621072399367</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Central Barcode Focusing 4">
+      <created>1621073485269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1621073485269</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,7 +127,8 @@
     <MESSAGE value="Added Central Barcode Focusing" />
     <MESSAGE value="Added Central Barcode Focusing 2" />
     <MESSAGE value="Added Central Barcode Focusing 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing 3" />
+    <MESSAGE value="Added Central Barcode Focusing 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing 4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618866209289">
@@ -147,10 +155,10 @@
       <screen x="0" y="25" width="1920" height="970" />
     </state>
     <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
-    <state x="560" y="247" key="Vcs.Push.Dialog.v2" timestamp="1621072409741">
+    <state x="560" y="247" key="Vcs.Push.Dialog.v2" timestamp="1621073497409">
       <screen x="0" y="25" width="1920" height="970" />
     </state>
-    <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621072409741" />
+    <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073497409" />
     <state x="652" y="142" width="642" height="735" key="find.popup" timestamp="1621071560070">
       <screen x="0" y="25" width="1920" height="970" />
     </state>
