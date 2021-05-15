@@ -217,7 +217,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 //        barcodeDetector.setProcessor(
 //                new MultiProcessor.Builder<>(barcodeFactory).build());
         barcodeDetector.setProcessor(
-                new CentralBarcodeFocusingProcessor(barcodeDetector, new Tracker<Barcode>()));
+                new CentralBarcodeFocusingProcessor(barcodeDetector, barcodeFactory.getTracker()));
 
         if (!barcodeDetector.isOperational()) {
             // Check for low storage.  If there is low storage, the native library will not be
