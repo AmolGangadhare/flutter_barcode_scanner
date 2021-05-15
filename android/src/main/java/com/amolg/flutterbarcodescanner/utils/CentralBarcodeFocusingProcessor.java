@@ -20,20 +20,20 @@ public class CentralBarcodeFocusingProcessor extends FocusingProcessor<Barcode> 
         Frame.Metadata meta = detections.getFrameMetadata();
         double nearestDistance = Double.MAX_VALUE;
         int id = -1;
-
-        for (int i = 0; i < barcodes.size(); ++i) {
-            int tempId = barcodes.keyAt(i);
-            Barcode barcode = barcodes.get(tempId);
-            float dx = Math.abs((meta.getWidth() / 2) - barcode.getBoundingBox().centerX());
-            float dy = Math.abs((meta.getHeight() / 2) - barcode.getBoundingBox().centerY());
-
-            double distanceFromCenter =  Math.sqrt((dx * dx) + (dy * dy));
-
-            if (distanceFromCenter < nearestDistance) {
-                id = tempId;
-                nearestDistance = distanceFromCenter;
-            }
-        }
+        id = barcodes.keyAt(0);
+//        for (int i = 0; i < barcodes.size(); ++i) {
+//            int tempId = barcodes.keyAt(i);
+//            Barcode barcode = barcodes.get(tempId);
+//            float dx = Math.abs((meta.getWidth() / 2) - barcode.getBoundingBox().centerX());
+//            float dy = Math.abs((meta.getHeight() / 2) - barcode.getBoundingBox().centerY());
+//
+//            double distanceFromCenter =  Math.sqrt((dx * dx) + (dy * dy));
+//
+//            if (distanceFromCenter < nearestDistance) {
+//                id = tempId;
+//                nearestDistance = distanceFromCenter;
+//            }
+//        }
         return id;
     }
 }
