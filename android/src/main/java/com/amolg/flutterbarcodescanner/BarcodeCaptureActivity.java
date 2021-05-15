@@ -31,6 +31,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.amolg.flutterbarcodescanner.utils.CentralBarcodeFocusingProcessor;
+import com.google.android.gms.vision.Tracker;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.core.app.ActivityCompat;
@@ -209,8 +211,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, this);
+
+        // Use personalized Central-Focusing Scanner
+        // to filter scanned barcode
+//        barcodeDetector.setProcessor(
+//                new MultiProcessor.Builder<>(barcodeFactory).build());
         barcodeDetector.setProcessor(
-                new MultiProcessor.Builder<>(barcodeFactory).build());
+                new CentralBarcodeFocusingProcessor(barcodeDetector, new Tracker<Barcode>()));
 
         if (!barcodeDetector.isOperational()) {
             // Check for low storage.  If there is low storage, the native library will not be
