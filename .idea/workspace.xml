@@ -125,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621139208520</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Central Barcode Focusing Fix #2 on Central Size">
+      <created>1621139823109</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621139823109</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,17 +155,18 @@
     <MESSAGE value="Added Central Barcode Focusing 4" />
     <MESSAGE value="Added Central Barcode Focusing 5" />
     <MESSAGE value="Added Central Barcode Focusing Fix #1 on Central Size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing Fix #1 on Central Size" />
+    <MESSAGE value="Added Central Barcode Focusing Fix #2 on Central Size" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing Fix #2 on Central Size" />
   </component>
   <component name="WindowStateProjectService">
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618866209289">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.729@0.23.1280.729" timestamp="1618866209289" />
-    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621139203466">
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621139820945">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621139203466" />
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621139820945" />
     <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1618868504824">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
@@ -180,10 +188,10 @@
     </state>
     <state x="326" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621137276287" />
     <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621139217879">
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621139829552">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621139217879" />
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621139829552" />
     <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621139352864">
       <screen x="0" y="0" width="1366" height="728" />
