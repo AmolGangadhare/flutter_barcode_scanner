@@ -29,7 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621146502069</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621146755846</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1621146755846</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,10 +205,10 @@
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.729@0.23.1280.729" timestamp="1618866209289" />
-    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621146498841">
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621146752950">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621146498841" />
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621146752950" />
     <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1618868504824">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
@@ -224,10 +230,10 @@
     </state>
     <state x="326" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621137276287" />
     <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621146509337">
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621146764697">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621146509337" />
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621146764697" />
     <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621145198335">
       <screen x="0" y="0" width="1366" height="728" />
