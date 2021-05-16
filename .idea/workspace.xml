@@ -27,11 +27,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="Added Central Barcode Focusing 5">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/caches/build_file_checksums.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621073817351</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Central Barcode Focusing Fix #1 on Central Size">
+      <created>1621139208520</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621139208520</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,13 +147,18 @@
     <MESSAGE value="Added Central Barcode Focusing 3" />
     <MESSAGE value="Added Central Barcode Focusing 4" />
     <MESSAGE value="Added Central Barcode Focusing 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing 5" />
+    <MESSAGE value="Added Central Barcode Focusing Fix #1 on Central Size" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing Fix #1 on Central Size" />
   </component>
   <component name="WindowStateProjectService">
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618866209289">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.729@0.23.1280.729" timestamp="1618866209289" />
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621139203466">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621139203466" />
     <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1618868504824">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
@@ -171,14 +180,15 @@
     </state>
     <state x="326" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621137276287" />
     <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
-    <state x="560" y="247" key="Vcs.Push.Dialog.v2" timestamp="1621073829074">
-      <screen x="0" y="25" width="1920" height="970" />
-    </state>
-    <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621137310648">
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621139217879">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1621137310648" />
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621139217879" />
+    <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621139352864">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1621139352864" />
     <state x="464" y="88" width="607" height="552" key="find.popup" timestamp="1621138710704">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

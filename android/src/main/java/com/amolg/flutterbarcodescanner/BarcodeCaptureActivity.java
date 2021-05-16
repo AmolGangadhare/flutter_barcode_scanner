@@ -212,7 +212,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay, this);
 
-        CentralDetector centralDetector = new CentralDetector(barcodeDetector, AppConstants.BARCODE_RECT_WIDTH, (int) (AppConstants.BARCODE_RECT_HEIGHT / 1.5));
+        CentralDetector centralDetector = new CentralDetector(barcodeDetector, AppUtil.dpToPx(getContext(), AppConstants.BARCODE_RECT_WIDTH), AppUtil.dpToPx(getContext(), (int) (AppConstants.BARCODE_RECT_HEIGHT / 1.5)));
 
         centralDetector.setProcessor(
                 new MultiProcessor.Builder<>(barcodeFactory).build());
