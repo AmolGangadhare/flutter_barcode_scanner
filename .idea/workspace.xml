@@ -146,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621142310833</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621145074271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1621145074271</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,17 +177,18 @@
     <MESSAGE value="Added Central Barcode Focusing 5" />
     <MESSAGE value="Added Central Barcode Focusing Fix #1 on Central Size" />
     <MESSAGE value="Added Central Barcode Focusing Fix #2 on Central Size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Central Barcode Focusing Fix #2 on Central Size" />
+    <MESSAGE value="Added Central-Focusing for Barcode &amp; QR Scanning for Android" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Central-Focusing for Barcode &amp; QR Scanning for Android" />
   </component>
   <component name="WindowStateProjectService">
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618866209289">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.729@0.23.1280.729" timestamp="1618866209289" />
-    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621142304419">
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621145071859">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621142304419" />
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621145071859" />
     <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1618868504824">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
@@ -202,23 +210,23 @@
     </state>
     <state x="326" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621137276287" />
     <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621142320714">
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621145080220">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621142320714" />
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621145080220" />
     <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621139352864">
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621145198335">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1621139352864" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1621145198335" />
     <state x="464" y="88" width="607" height="552" key="find.popup" timestamp="1621144238581">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="464" y="88" width="607" height="552" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621144238581" />
     <state x="652" y="142" width="642" height="735" key="find.popup/0.25.1920.970@0.25.1920.970" timestamp="1621071560070" />
-    <state width="421" height="123" key="javadoc.popup.new" timestamp="1621144508787">
+    <state width="421" height="123" key="javadoc.popup.new" timestamp="1621146150563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="421" height="123" key="javadoc.popup.new/0.0.1366.728@0.0.1366.728" timestamp="1621144508787" />
+    <state width="421" height="123" key="javadoc.popup.new/0.0.1366.728@0.0.1366.728" timestamp="1621146150563" />
   </component>
 </project>
