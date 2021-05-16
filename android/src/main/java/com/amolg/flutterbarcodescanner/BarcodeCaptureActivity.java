@@ -216,20 +216,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         // Create Central-Focusing based on BARCODE/QR Frame on screen
         int frameWidth;
         int frameHeight;
-        const int barcodeMode = SCAN_MODE_ENUM.BARCODE.ordinal();
-        const int qrMode = SCAN_MODE_ENUM.QR.ordinal();
-        switch (SCAN_MODE){
-            case barcodeMode:
-                frameWidth = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_WIDTH);
-                frameHeight = AppUtil.dpToPx(context, (int) (AppConstants.BARCODE_RECT_HEIGHT / 1.5));
-                break;
-            case qrMode:
-                frameWidth = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_WIDTH);
-                frameHeight = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_HEIGHT);
-                break;
-            default:
-                frameWidth = 0;
-                frameHeight = 0;
+        if (SCAN_MODE == SCAN_MODE_ENUM.BARCODE.ordinal()) {
+            frameWidth = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_WIDTH);
+            frameHeight = AppUtil.dpToPx(context, (int) (AppConstants.BARCODE_RECT_HEIGHT / 1.5));
+        } else if (SCAN_MODE == SCAN_MODE_ENUM.QR.ordinal()) {
+            frameWidth = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_WIDTH);
+            frameHeight = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_HEIGHT);
+        } else {
+            frameWidth = 0;
+            frameHeight = 0;
         }
         CentralDetector centralDetector = new CentralDetector(barcodeDetector, frameWidth, frameHeight);
 
