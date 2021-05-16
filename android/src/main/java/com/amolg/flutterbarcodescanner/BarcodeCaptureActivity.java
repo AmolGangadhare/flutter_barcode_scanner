@@ -216,8 +216,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         // Create Central-Focusing based on BARCODE/QR Frame on screen
         int frameWidth;
         int frameHeight;
-        final int barcodeMode = SCAN_MODE_ENUM.BARCODE.ordinal();
-        final int qrMode = SCAN_MODE_ENUM.QR.ordinal();
+        const int barcodeMode = SCAN_MODE_ENUM.BARCODE.ordinal();
+        const int qrMode = SCAN_MODE_ENUM.QR.ordinal();
         switch (SCAN_MODE){
             case barcodeMode:
                 frameWidth = AppUtil.dpToPx(context, AppConstants.BARCODE_RECT_WIDTH);
