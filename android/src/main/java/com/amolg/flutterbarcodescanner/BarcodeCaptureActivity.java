@@ -423,7 +423,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             if (hasCamera(inverseFacing)) {
                 boolean autoFocus = mCameraSource.getFocusMode() != null;
                 boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();
-                createCameraSource(autoFocus, useFlash, getInverseCameraFacing(currentFacing));
+                createCameraSource(autoFocus, useFlash, inverseFacing);
                 startCameraSource();
             }
         }
