@@ -419,11 +419,28 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             finish();
         } else if (i == R.id.imgViewSwitchCamera) {
             int currentFacing = mCameraSource.getCameraFacing();
-            boolean autoFocus = mCameraSource.getFocusMode() != null;
-            boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();
-            createCameraSource(autoFocus, useFlash, getInverseCameraFacing(currentFacing));
-            startCameraSource();
+            int inverseFacing = getInverseCameraFacing(currentFacing);
+            if (hasCamera(inverseFacing)) {
+                boolean autoFocus = mCameraSource.getFocusMode() != null;
+                boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();
+                createCameraSource(autoFocus, useFlash, getInverseCameraFacing(currentFacing));
+                startCameraSource();
+            }
         }
+    }
+
+    private boolean hasCamera(int cameraFacing) {
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        int numberOfCameras = Camera.getNumberOfCameras();
+
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == cameraFacing) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private int getInverseCameraFacing(int cameraFacing) {
