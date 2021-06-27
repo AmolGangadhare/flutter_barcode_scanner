@@ -16,6 +16,7 @@
 package com.amolg.flutterbarcodescanner;
 
 import android.Manifest;
+import android.media.MediaPlayer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -545,6 +546,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             if (FlutterBarcodeScannerPlugin.isContinuousScan) {
                 FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
             } else {
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.beep);
+                mp.start();
                 Intent data = new Intent();
                 data.putExtra(BarcodeObject, barcode);
                 setResult(CommonStatusCodes.SUCCESS, data);
