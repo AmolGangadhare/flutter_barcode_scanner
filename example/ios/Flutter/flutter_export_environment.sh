@@ -1,7 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Volumes/MyData/Flutter_SDK/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/admin/Desktop/FlutterBarcodeScanner/flutter_barcode_scanner/example"
+export "FLUTTER_ROOT=/Users/zaid.barghouthi/Downloads/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/zaid.barghouthi/Desktop/flutter_barcode_scanner/example"
+export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
