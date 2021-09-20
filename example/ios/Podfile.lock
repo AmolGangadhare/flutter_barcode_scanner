@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_barcode_scanner (1.1.0):
+  - flutter_barcode_scanner (2.0.0):
     - Flutter
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_barcode_scanner: cd6b739f16ff1696ba9e304904f2411ba97d303c
+  flutter_barcode_scanner: 7a1144744c28dc0c57a8de7218ffe5ec59a9e4bf
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
