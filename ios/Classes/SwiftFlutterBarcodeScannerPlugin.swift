@@ -54,7 +54,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     
     public static func onBarcodeScanReceiver( barcode:String){
         if let stream = barcodeStream {
-            barcodeStream!(barcode)
+            stream(barcode)
         }
     }
     
@@ -467,7 +467,7 @@ class BarcodeScannerViewController: UIViewController {
     
     
     /// Cancel button click event listener
-    @IBAction func cancelButtonClicked() {
+    @IBAction private func cancelButtonClicked() {
         if SwiftFlutterBarcodeScannerPlugin.isContinuousScan{
             self.dismiss(animated: true, completion: {
                 SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: "-1")
