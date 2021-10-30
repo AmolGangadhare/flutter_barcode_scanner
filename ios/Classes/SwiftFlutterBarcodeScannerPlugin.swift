@@ -62,7 +62,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
 
         if let dismissScanner = args["dismissScanner"] as? String{
-            SwiftFlutterBarcodeScannerPlugin._controller?.cancelButtonClicked();
+            SwiftFlutterBarcodeScannerPlugin._controller?.dismiss(animated: true);
             return;
         }
 

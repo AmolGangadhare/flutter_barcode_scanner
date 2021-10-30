@@ -92,6 +92,11 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         try {
             pendingResult = result;
+            
+            if (call.method.equals("dismiss")) {
+                activity.sendBroadcast(new Intent("finishCapture"));
+                return;
+            }
 
             if (call.method.equals("scanBarcode")) {
                 if (!(call.arguments instanceof Map)) {
@@ -198,7 +203,9 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        barcodeStream.success(barcode.rawValue);
+                        if (barcodeStream != null) {
+                            barcodeStream.success(barcode.rawValue);
+                        }
                     }
                 });
             }
