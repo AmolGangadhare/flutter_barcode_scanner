@@ -22,6 +22,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var isContinuousScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
     public static var scanMode = ScanMode.QR.index
+    static var _controller: BarcodeScannerViewController?;
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -52,11 +53,19 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public static func onBarcodeScanReceiver( barcode:String){
-        barcodeStream!(barcode)
+        if let stream = barcodeStream {
+            barcodeStream!(barcode)
+        }
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
+
+        if let dismissScanner = args["dismissScanner"] as? String{
+            SwiftFlutterBarcodeScannerPlugin._controller?.cancelButtonClicked();
+            return;
+        }
+
         if let colorCode = args["lineColor"] as? String{
             SwiftFlutterBarcodeScannerPlugin.lineColor = colorCode
         }else {
@@ -90,6 +99,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         
         pendingResult=result
         let controller = BarcodeScannerViewController()
+        SwiftFlutterBarcodeScannerPlugin._controller = controller;
         controller.delegate = self
         
         if #available(iOS 13.0, *) {
@@ -236,6 +246,7 @@ class BarcodeScannerViewController: UIViewController {
     override public func viewDidDisappear(_ animated: Bool){
         // Stop video capture
         captureSession.stopRunning()
+        SwiftFlutterBarcodeScannerPlugin._controller = nil;
     }
     
     // Init UI components needed
@@ -456,7 +467,7 @@ class BarcodeScannerViewController: UIViewController {
     
     
     /// Cancel button click event listener
-    @IBAction private func cancelButtonClicked() {
+    @IBAction func cancelButtonClicked() {
         if SwiftFlutterBarcodeScannerPlugin.isContinuousScan{
             self.dismiss(animated: true, completion: {
                 SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: "-1")
