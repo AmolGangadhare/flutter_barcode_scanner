@@ -125,6 +125,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
                 }}
         }else {
             showAlertDialog(title: "Unable to proceed", message: "Camera not available")
+            pendingResult("-2")
         }
     }
     
