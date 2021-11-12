@@ -23,6 +23,9 @@ class FlutterBarcodeScanner {
   /// Shows a scan line with [lineColor] over a scan window. A flash icon is
   /// displayed if [isShowFlashIcon] is true. The text of the cancel button can
   /// be customized with the [cancelButtonText] string.
+  /// Completes with `-1` if the user cancels the scan.
+  /// On iOS, completes with `-2` if the camera is not available, for instance,
+  /// on simulator.
   static Future<String> scanBarcode(String lineColor, String cancelButtonText,
       bool isShowFlashIcon, ScanMode scanMode) async {
     if (cancelButtonText.isEmpty) {
