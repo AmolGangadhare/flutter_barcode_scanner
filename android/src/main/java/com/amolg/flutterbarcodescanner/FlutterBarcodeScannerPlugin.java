@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import io.flutter.embedding.android.FlutterActivity;
 
@@ -150,20 +151,28 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     try {
+                        BarcodeTypes formats = new BarcodeTypes();
                         Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                        String barcodeResult = barcode.rawValue;
-                        pendingResult.success(barcodeResult);
+//                        String barcodeResult = barcode.rawValue;
+                        Log.i(TAG, "code format " + barcode.format);
+                        HashMap<String, String> result = new HashMap<String, String>();
+                        result.put("data",barcode.rawValue);
+                        result.put("format", formats.getFormat(barcode.format));
+                        pendingResult.success(result);
                     } catch (Exception e) {
-                        pendingResult.success("-1");
+                        // pendingResult.success("-1");
+                        pendingResult.error("error",e.toString(),e);
                     }
                 } else {
-                    pendingResult.success("-1");
+                    // pendingResult.success("-1");
+                    pendingResult.error("error","No data available",null);
                 }
                 pendingResult = null;
                 arguments = null;
                 return true;
             } else {
-                pendingResult.success("-1");
+                // pendingResult.success("-1");
+                pendingResult.error("error","resultCode "+resultCode,null);
             }
         }
         return false;

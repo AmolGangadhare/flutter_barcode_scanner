@@ -128,7 +128,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }
     }
     
-    public func userDidScanWith(barcode: String){
+    public func userDidScanWith(barcode: NSDictionary){
         pendingResult(barcode)
     }
     
@@ -142,7 +142,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
 }
 
 protocol ScanBarcodeDelegate {
-    func userDidScanWith(barcode: String)
+    func userDidScanWith(barcode: NSDictionary)
 }
 
 class BarcodeScannerViewController: UIViewController {
@@ -159,6 +159,21 @@ class BarcodeScannerViewController: UIViewController {
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
+    private let formatsMap = [
+        AVMetadataObject.ObjectType.upce: "UPC_E",
+        AVMetadataObject.ObjectType.code39: "CODE_39",
+        AVMetadataObject.ObjectType.code39Mod43: "CODE39MOD43",
+        AVMetadataObject.ObjectType.code93: "CODE_93",
+        AVMetadataObject.ObjectType.code128: "CODE_128",
+        AVMetadataObject.ObjectType.ean8: "EAN_8",
+        AVMetadataObject.ObjectType.ean13: "EAN_13",
+        AVMetadataObject.ObjectType.aztec: "AZTEC",
+        AVMetadataObject.ObjectType.pdf417: "PDF417",
+        AVMetadataObject.ObjectType.itf14: "ITF14",
+        AVMetadataObject.ObjectType.dataMatrix: "DATA_MATRIX",
+        AVMetadataObject.ObjectType.interleaved2of5: "ITF",
+        AVMetadataObject.ObjectType.qr: "QR_CODE"
+    ]
     public var delegate: ScanBarcodeDelegate? = nil
     private var captureSession = AVCaptureSession()
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -464,7 +479,8 @@ class BarcodeScannerViewController: UIViewController {
         }else{
             if self.delegate != nil {
                 self.dismiss(animated: true, completion: {
-                    self.delegate?.userDidScanWith(barcode: "-1")
+                    let result = ["error": "Canceled by user"];
+                    self.delegate?.userDidScanWith(barcode: result as NSDictionary)
                 })
             }
         }
@@ -559,7 +575,7 @@ class BarcodeScannerViewController: UIViewController {
             : UIApplication.shared.statusBarOrientation.isPortrait
     }
     
-    private func launchApp(decodedURL: String) {
+    private func launchApp(decodedURL: NSDictionary) {
         if presentedViewController != nil {
             return
         }
@@ -589,7 +605,12 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 if(SwiftFlutterBarcodeScannerPlugin.isContinuousScan){
                     SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: metadataObj.stringValue!)
                 }else{
-                    launchApp(decodedURL: metadataObj.stringValue!)
+                    print("**** code format \(metadataObj.type) \(formatsMap[metadataObj.type] ?? "Unknown")")
+                    let result = [
+                        "data": metadataObj.stringValue!,
+                        "format": formatsMap[metadataObj.type],
+                    ];
+                    launchApp(decodedURL: result as NSDictionary)
                 }
             }
         }
