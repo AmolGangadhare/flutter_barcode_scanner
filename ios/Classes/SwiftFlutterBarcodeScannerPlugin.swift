@@ -20,6 +20,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var isShowFlashIcon:Bool=false
     var pendingResult:FlutterResult!
     public static var isContinuousScan:Bool=false
+    public static var isBinaryScan:Bool=false;
     static var barcodeStream:FlutterEventSink?=nil
     public static var scanMode = ScanMode.QR.index
     
@@ -77,6 +78,12 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }else {
             SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
         }
+        if let isContinuousScan = args["binaryScan"] as? Bool{
+            SwiftFlutterBarcodeScannerPlugin.isBinaryScan = isContinuousScan
+        }else {
+            SwiftFlutterBarcodeScannerPlugin.isBinaryScan = false
+        }
+        
         
         if let scanModeReceived = args["scanMode"] as? Int {
             if scanModeReceived == ScanMode.DEFAULT.index {
@@ -129,7 +136,11 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public func userDidScanWith(barcode: String){
-        pendingResult(barcode)
+        if(isBinaryScan){
+            pendingResult(Array(barcode.utf8))
+        } else {
+            pendingResult(barcode)
+        }
     }
     
     /// Show common alert dialog
@@ -585,6 +596,7 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             // If the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
             //            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             //qrCodeFrameView?.frame = barCodeObject!.bounds
+            
             if metadataObj.stringValue != nil {
                 if(SwiftFlutterBarcodeScannerPlugin.isContinuousScan){
                     SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: metadataObj.stringValue!)

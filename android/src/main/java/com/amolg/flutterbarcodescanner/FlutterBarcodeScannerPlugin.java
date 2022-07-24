@@ -48,6 +48,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     public static String lineColor = "";
     public static boolean isShowFlashIcon = false;
     public static boolean isContinuousScan = false;
+    public static boolean isBinaryScan = false;
     static EventChannel.EventSink barcodeStream;
     private EventChannel eventChannel;
 
@@ -100,6 +101,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 arguments = (Map<String, Object>) call.arguments;
                 lineColor = (String) arguments.get("lineColor");
                 isShowFlashIcon = (boolean) arguments.get("isShowFlashIcon");
+                isBinaryScan = (boolean) arguments.get("binaryScan");
                 if (null == lineColor || lineColor.equalsIgnoreCase("")) {
                     lineColor = "#DC143C";
                 }
@@ -151,8 +153,11 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 if (data != null) {
                     try {
                         Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                        String barcodeResult = barcode.rawValue;
-                        pendingResult.success(barcodeResult);
+                        if(isBinaryScan){
+                            pendingResult.success(barcode.rawBytes);
+                        } else {
+                            pendingResult.success(barcode.rawValue);
+                        }
                     } catch (Exception e) {
                         pendingResult.success("-1");
                     }
