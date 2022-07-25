@@ -20,7 +20,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var isShowFlashIcon:Bool=false
     var pendingResult:FlutterResult!
     public static var isContinuousScan:Bool=false
-    public static var isBinaryScan:Bool=false;
+    public static var isBinaryScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
     public static var scanMode = ScanMode.QR.index
     
@@ -78,8 +78,8 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }else {
             SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
         }
-        if let isContinuousScan = args["binaryScan"] as? Bool{
-            SwiftFlutterBarcodeScannerPlugin.isBinaryScan = isContinuousScan
+        if let isBinaryScan = args["binaryScan"] as? Bool{
+            SwiftFlutterBarcodeScannerPlugin.isBinaryScan = isBinaryScan
         }else {
             SwiftFlutterBarcodeScannerPlugin.isBinaryScan = false
         }
@@ -136,8 +136,9 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public func userDidScanWith(barcode: String){
-        if(isBinaryScan){
-            pendingResult(Array(barcode.utf8))
+        if(SwiftFlutterBarcodeScannerPlugin.isBinaryScan){
+            let uint8list = FlutterStandardTypedData.init(bytes: Data(barcode.utf8))
+            pendingResult(uint8list)
         } else {
             pendingResult(barcode)
         }
