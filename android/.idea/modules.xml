@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.iml" filepath="$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.main.iml" filepath="$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/flutter_barcode_scanner.unitTest.iml" />
     </modules>
   </component>
 </project>
