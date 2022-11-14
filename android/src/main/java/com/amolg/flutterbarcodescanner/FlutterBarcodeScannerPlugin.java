@@ -93,30 +93,28 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         try {
             pendingResult = result;
 
-            if (call.method.equals("scanBarcode")) {
-                if (!(call.arguments instanceof Map)) {
-                    throw new IllegalArgumentException("Plugin not passing a map as parameter: " + call.arguments);
-                }
-                arguments = (Map<String, Object>) call.arguments;
-                lineColor = (String) arguments.get("lineColor");
-                isShowFlashIcon = (boolean) arguments.get("isShowFlashIcon");
-                if (null == lineColor || lineColor.equalsIgnoreCase("")) {
-                    lineColor = "#DC143C";
-                }
-                if (null != arguments.get("scanMode")) {
-                    if ((int) arguments.get("scanMode") == BarcodeCaptureActivity.SCAN_MODE_ENUM.DEFAULT.ordinal()) {
-                        BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
-                    } else {
-                        BarcodeCaptureActivity.SCAN_MODE = (int) arguments.get("scanMode");
-                    }
-                } else {
-                    BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
-                }
-
-                isContinuousScan = (boolean) arguments.get("isContinuousScan");
-
-                startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);
+            if (!(call.arguments instanceof Map)) {
+                throw new IllegalArgumentException("Plugin not passing a map as parameter: " + call.arguments);
             }
+            arguments = (Map<String, Object>) call.arguments;
+            lineColor = (String) arguments.get("lineColor");
+            isShowFlashIcon = (boolean) arguments.get("isShowFlashIcon");
+            if (null == lineColor || lineColor.equalsIgnoreCase("")) {
+                lineColor = "#DC143C";
+            }
+            if (null != arguments.get("scanMode")) {
+                if ((int) arguments.get("scanMode") == BarcodeCaptureActivity.SCAN_MODE_ENUM.DEFAULT.ordinal()) {
+                    BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
+                } else {
+                    BarcodeCaptureActivity.SCAN_MODE = (int) arguments.get("scanMode");
+                }
+            } else {
+                BarcodeCaptureActivity.SCAN_MODE = BarcodeCaptureActivity.SCAN_MODE_ENUM.QR.ordinal();
+            }
+
+            isContinuousScan = (boolean) arguments.get("isContinuousScan");
+
+            startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());
         }
