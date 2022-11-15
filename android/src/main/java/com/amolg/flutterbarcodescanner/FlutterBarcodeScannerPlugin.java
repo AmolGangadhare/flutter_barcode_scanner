@@ -16,7 +16,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.Map;
 
-import io.flutter.embedding.android.FlutterActivity;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -245,7 +244,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             final ActivityPluginBinding activityBinding) {
 
 
-        this.activity = (Activity) activity;
+        this.activity = activity;
         eventChannel =
                 new EventChannel(messenger, "flutter_barcode_scanner_receiver");
         eventChannel.setStreamHandler(this);
