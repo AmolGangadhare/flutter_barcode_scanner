@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/topLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
+    android:gravity="center_vertical"
     android:keepScreenOn="true">
 
     <com.amolg.flutterbarcodescanner.camera.CameraSourcePreview
@@ -30,35 +32,41 @@
 
         <ImageView
             android:id="@+id/btnBarcodeCaptureCancel"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_width="30dp"
+            android:layout_height="70dp"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_outline_white"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:src="@drawable/ic_back_outline_white"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="-80dp"
         android:background="@android:color/transparent">
 
 
         <TextView
+            android:id="@+id/editTextTextPersonName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="18dp"
-            android:text="Utilize a câmera para scanear o\ncódigo de barras do seu boleto"
-            android:layout_centerHorizontal="true"/>
+            android:layout_height="fill_parent"
+            android:gravity="fill_vertical"
+            android:rotation="90"
+            android:textFontWeight="400"
+            app:fontFamily="@font/klavika"
+            android:textSize="18sp"
+            android:text="Utilize a câmera para scanear o\n código de barras do seu boleto" />
     </RelativeLayout>
+
+
 </RelativeLayout>

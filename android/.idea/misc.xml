@@ -9,7 +9,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Italo Dias/Documents/flutter projects/flutter_barcode_scanner/android/src/main/res/drawable/ic_barcode_flash_off.xml" value="0.1" />
-        <entry key="..\:/Users/Italo Dias/Documents/flutter projects/flutter_barcode_scanner/android/src/main/res/layout/barcode_capture.xml" value="0.18" />
+        <entry key="..\:/Users/Italo Dias/Documents/flutter projects/flutter_barcode_scanner/android/src/main/res/layout-v28/barcode_capture.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/Italo Dias/Documents/flutter projects/flutter_barcode_scanner/android/src/main/res/layout/barcode_capture.xml" value="0.22" />
       </map>
     </option>
   </component>
