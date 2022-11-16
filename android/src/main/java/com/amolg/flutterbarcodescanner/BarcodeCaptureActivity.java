@@ -117,8 +117,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
         }
 
-        ImageView btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
-        btnBarcodeCaptureCancel.setOnClickListener(this);
+//        ImageView btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
+//        btnBarcodeCaptureCancel.setOnClickListener(this);
 
         mPreview = findViewById(R.id.preview);
         mGraphicOverlay = findViewById(R.id.graphicOverlay);
@@ -244,6 +244,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @Override
     protected void onResume() {
         super.onResume();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         startCameraSource();
     }
 
