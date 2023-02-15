@@ -255,7 +255,7 @@ class BarcodeScannerViewController: UIViewController {
     // Inititlize components
     func initBarcodeComponents(){
         
-        let deviceDiscoverySession = AVCaptureDevice.default(mediaType: AVMediaType.video, position: .back)
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
         // Get the back-facing camera for capturing videos
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             print("Failed to get the camera device")
@@ -263,6 +263,13 @@ class BarcodeScannerViewController: UIViewController {
         }
         
         do {
+            // Enable focus mode for iPhone pro camera
+            if captureDevice.isFocusModeSupported(.continuousAutoFocus) {
+                try! captureDevice.lockForConfiguration()
+                captureDevice.focusMode = .continuousAutoFocus
+                captureDevice.unlockForConfiguration()
+            }
+
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
