@@ -263,6 +263,13 @@ class BarcodeScannerViewController: UIViewController {
         }
         
         do {
+            // Enable focus mode for iPhone pro camera
+            if captureDevice.isFocusModeSupported(.continuousAutoFocus) {
+                try! captureDevice.lockForConfiguration()
+                captureDevice.focusMode = .continuousAutoFocus
+                captureDevice.unlockForConfiguration()
+            }
+
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
