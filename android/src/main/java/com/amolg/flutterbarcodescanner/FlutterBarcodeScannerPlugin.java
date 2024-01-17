@@ -17,20 +17,20 @@ import com.google.android.gms.vision.barcode.Barcode;
 import java.util.Map;
 
 import io.flutter.embedding.android.FlutterActivity;
-
+import io.flutter.embedding.android.FlutterFragmentActivity;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
+import io.flutter.plugin.common.EventChannel.StreamHandler;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener;
-import io.flutter.plugin.common.EventChannel.StreamHandler;
-import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 
 
 /**
@@ -39,7 +39,7 @@ import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener, StreamHandler, FlutterPlugin, ActivityAware {
     private static final String CHANNEL = "flutter_barcode_scanner";
 
-    private static FlutterActivity activity;
+    private static FlutterFragmentActivity activity;
     private static Result pendingResult;
     private Map<String, Object> arguments;
 
@@ -68,7 +68,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     public FlutterBarcodeScannerPlugin() {
     }
 
-    private FlutterBarcodeScannerPlugin(FlutterActivity activity, final PluginRegistry.Registrar registrar) {
+    private FlutterBarcodeScannerPlugin(FlutterFragmentActivity activity, final PluginRegistry.Registrar registrar) {
         FlutterBarcodeScannerPlugin.activity = activity;
     }
 
@@ -84,7 +84,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         if (registrar.context() != null) {
             applicationContext = (Application) (registrar.context().getApplicationContext());
         }
-        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin((FlutterActivity) registrar.activity(), registrar);
+        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin((FlutterFragmentActivity) registrar.activity(), registrar);
         instance.createPluginSetup(registrar.messenger(), applicationContext, activity, registrar, null);
     }
 
@@ -245,7 +245,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             final ActivityPluginBinding activityBinding) {
 
 
-        this.activity = (FlutterActivity) activity;
+        this.activity = (FlutterFragmentActivity) activity;
         eventChannel =
                 new EventChannel(messenger, "flutter_barcode_scanner_receiver");
         eventChannel.setStreamHandler(this);
@@ -292,12 +292,20 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         activity = null;
         activityBinding.removeActivityResultListener(this);
         activityBinding = null;
-        lifecycle.removeObserver(observer);
-        lifecycle = null;
-        channel.setMethodCallHandler(null);
-        eventChannel.setStreamHandler(null);
-        channel = null;
-        applicationContext.unregisterActivityLifecycleCallbacks(observer);
+        if (observer != null && lifecycle != null) {
+            lifecycle.removeObserver(observer);
+            lifecycle = null;
+        }
+        if (channel != null) {
+            channel.setMethodCallHandler(null);
+            channel = null;
+        }
+        if (eventChannel != null) {
+            eventChannel.setStreamHandler(null);
+        }
+        if (observer != null) {
+            applicationContext.unregisterActivityLifecycleCallbacks(observer);
+        }
         applicationContext = null;
     }
 
