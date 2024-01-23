@@ -253,6 +253,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     protected void onResume() {
         super.onResume();
         startCameraSource();
+        String action = intent.getAction();
+        if (action.equals("closeScanner")) {
+            finish();
+        }
     }
 
     /**
