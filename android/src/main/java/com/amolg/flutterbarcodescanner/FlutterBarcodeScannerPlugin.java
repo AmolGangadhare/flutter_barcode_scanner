@@ -116,6 +116,8 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 isContinuousScan = (boolean) arguments.get("isContinuousScan");
 
                 startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);
+            } else if (call.method.equals("closeScanner")) {
+                activity.sendBroadcast(new Intent("closeScanner"));
             }
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());

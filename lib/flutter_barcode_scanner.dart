@@ -72,4 +72,15 @@ class FlutterBarcodeScanner {
     _onBarcodeReceiver ??= _eventChannel.receiveBroadcastStream();
     return _onBarcodeReceiver;
   }
+
+  /// Closes the scanner screen by calling dismiss on the viewController in iOS
+  /// and finish() activity in Android
+  static void closeScanner() {
+    // Pass params to the plugin
+    Map params = <String, dynamic>{'dummy': 'dummy'};
+
+    // Invoke method to dismiss scanner viewController in iOS
+    // and finish() activity in Android
+    _channel.invokeMethod('closeScanner', params);
+  }
 }
