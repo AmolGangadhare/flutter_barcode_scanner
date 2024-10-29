@@ -7,3 +7,6 @@ pubspec.lock
 
 build/
 */.idea/caches/
+
+# FVM Version Cache
+.fvm/
