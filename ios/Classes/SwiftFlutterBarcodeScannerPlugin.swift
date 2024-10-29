@@ -128,9 +128,15 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }
     }
     
-    public func userDidScanWith(barcode: String){
-        pendingResult(barcode)
+    public func userDidScanWith(barcode: String) {
+    var processedBarcode = barcode
+    if barcode.count == 12 && barcode.allSatisfy({ $0.isNumber }) {
+        if barcode.starts(with: "0") {
+            processedBarcode = String(barcode.dropFirst())
+        }
     }
+    pendingResult(processedBarcode)
+}
     
     /// Show common alert dialog
     func showAlertDialog(title:String,message:String){
