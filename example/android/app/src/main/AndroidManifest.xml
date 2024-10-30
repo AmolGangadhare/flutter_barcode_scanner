@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EmbeddingV1Activity"
+            android:name=".MainActivity"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale"
             android:hardwareAccelerated="true"
