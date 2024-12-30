@@ -1,8 +1,9 @@
-# flutter_barcode_scanner
+# flutter_barcode_reader
 
-A plugin for Flutter apps that adds barcode scanning support on both Android and iOS.
 
-[![pub package](https://img.shields.io/pub/v/flutter_barcode_scanner.svg)](https://pub.dartlang.org/packages/flutter_barcode_scanner)
+A plugin for Flutter apps that adds barcode scanning support on both Android and iOS. This is actually a copy of flutter_barcode_scanner library, the credit goes to original author &#128525 
+
+[![pub package](https://img.shields.io/pub/v/flutter_barcode_reader.svg)](https://pub.dev/packages/flutter_barcode_reader)
 
 ![Demo gif](https://github.com/AmolGangadhare/MyProfileRepo/blob/master/flutter_barcode_scanning_demo.gif "Demo")
 
@@ -62,21 +63,21 @@ After making the changes in Android ans iOS add flutter_barcode_scanner to `pubs
 ```  
 dependencies:
   ...
-  flutter_barcode_scanner: ^2.0.0
+  flutter_barcode_reader: ^1.0.1
 ```
 
 ### One time scan
 1. You need to import the package first.
 
 ```
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_barcode_reader/flutter_barcode_reader.dart';
 ```
 
     
 2. Then use the `scanBarcode` method to access barcode scanning.
     
 ```
-String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+String barcodeScanRes = await FlutterBarcodeReader.scanBarcode(
                                                     COLOR_CODE, 
                                                     CANCEL_BUTTON_TEXT, 
                                                     isShowFlashIcon, 
@@ -97,13 +98,13 @@ Here in `scanBarcode`,
  NOTE: Currently, `scanMode` is just to show the graphics overlay for barcode and QR. Any of this mode selected will scan both QR and barcode. 
 
 ### Continuous scan
-* If you need to scan barcodes continuously without closing camera use `FlutterBarcodeScanner.getBarcodeStreamReceiver`
-params will be same like `FlutterBarcodeScanner.scanBarcode`
+* If you need to scan barcodes continuously without closing camera use `FlutterBarcodeReader.getBarcodeStreamReceiver`
+params will be same like `FlutterBarcodeReader.scanBarcode`
 e.g. 
 
 
 ```
-FlutterBarcodeScanner.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanMode.DEFAULT)
+FlutterBarcodeReader.getBarcodeStreamReceiver("#ff6666", "Cancel", false, ScanMode.DEFAULT)
          .listen((barcode) { 
          /// barcode to be used
          });
@@ -115,11 +116,4 @@ would :heart: to see any contribution, give :star:  if you like
 
 ### Contact:
 
-
-<p>
-<a href="https://github.com/AmolGangadhare"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/git_hub_logo.png" width="32" height="33" style="max-width:100%;"></a>
-<a href="https://stackoverflow.com/users/9823185/amol-gangadhare" rel="nofollow"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/stack_o_logo.svg" width="36" height="36" style="max-width:100%;"></a>
-<a href="https://www.linkedin.com/in/amolgangadhare/" rel="nofollow"><img src="https://github.com/AmolGangadhare/MyProfileRepo/blob/master/linked_in_logo.svg" width="36" height="36" style="max-width:100%;"></a>
-</p>
-
-E-mail: amol.gangadhare@gmail.com
+E-mail: mr.fathullah.asad@gmail.com

@@ -4,7 +4,8 @@ publish_to: 'none'
 version: 2.0.0-nullsafety.0
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: '>=3.4.4 <4.0.0'
+  flutter: ">=1.10.0"
 
 dependencies:
   flutter:
@@ -15,8 +16,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_barcode_scanner:
+  flutter_barcode_reader:
     path: ../
 
   pedantic: ^1.10.0-nullsafety.3

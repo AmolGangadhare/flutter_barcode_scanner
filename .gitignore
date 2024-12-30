@@ -7,3 +7,6 @@ pubspec.lock
 
 build/
 */.idea/caches/
+android/.idea/caches/build_file_checksums.ser
+android/.idea/caches/gradle_models.ser
+example/ios/Flutter/flutter_export_environment.sh
