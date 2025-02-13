@@ -16,6 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="flutter_barcode_scanner_example">
         <activity android:name="io.flutter.embedding.android.FlutterActivity"
+                android:exported="true"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
