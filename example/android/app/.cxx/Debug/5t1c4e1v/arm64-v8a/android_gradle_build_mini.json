@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Volumes/MyDocs/Developer/Tools/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/yacine/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Volumes/MyDocs/Developer/Projects/Flutter/flutter_barcode_scanner/example/android/app/.cxx/Debug/5t1c4e1v/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/yacine/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Volumes/MyDocs/Developer/Projects/Flutter/flutter_barcode_scanner/example/android/app/.cxx/Debug/5t1c4e1v/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
