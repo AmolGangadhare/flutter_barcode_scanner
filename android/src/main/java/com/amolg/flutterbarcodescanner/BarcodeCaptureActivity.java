@@ -85,6 +85,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private ImageView imgViewBarcodeCaptureUseFlash;
     private ImageView imgViewSwitchCamera;
 
+    public static Activity currentActivity;
+
     public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
 
     public enum SCAN_MODE_ENUM {
@@ -106,6 +108,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        currentActivity = this;
         try {
             setContentView(R.layout.barcode_capture);
 
@@ -252,6 +255,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @Override
     protected void onResume() {
         super.onResume();
+        currentActivity = this;
         startCameraSource();
     }
 
@@ -276,6 +280,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         if (mPreview != null) {
             mPreview.release();
         }
+        currentActivity = null;
     }
 
     /**
