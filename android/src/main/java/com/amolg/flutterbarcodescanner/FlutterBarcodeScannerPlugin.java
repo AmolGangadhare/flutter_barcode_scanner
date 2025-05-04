@@ -55,10 +55,10 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     public FlutterBarcodeScannerPlugin() {}
 
     // Método de registro para la nueva API de plugins
-    public static void registerWith(FlutterPlugin.FlutterPluginBinding binding) {
-        final FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin();
-        instance.pluginBinding = binding;
-    }
+ public static void registerWith(FlutterPlugin.FlutterPluginBinding binding) {
+    final MethodChannel channel = new MethodChannel(binding.getBinaryMessenger(), "flutter_barcode_scanner");
+    channel.setMethodCallHandler(new FlutterBarcodeScannerPlugin());
+}
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
