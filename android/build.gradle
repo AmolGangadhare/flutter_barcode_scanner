@@ -8,25 +8,26 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:7.3.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
+    namespace 'com.amolg.flutterbarcodescanner'
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -35,8 +36,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1' 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.9.0' 
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
 }
