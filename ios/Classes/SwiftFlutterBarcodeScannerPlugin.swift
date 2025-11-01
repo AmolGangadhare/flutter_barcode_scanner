@@ -22,6 +22,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var isContinuousScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
     public static var scanMode = ScanMode.QR.index
+    var controller:BarcodeScannerViewController?=nil
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
@@ -56,75 +57,81 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
-        if let colorCode = args["lineColor"] as? String{
-            SwiftFlutterBarcodeScannerPlugin.lineColor = colorCode
-        }else {
-            SwiftFlutterBarcodeScannerPlugin.lineColor = "#ff6666"
-        }
-        if let buttonText = args["cancelButtonText"] as? String{
-            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = buttonText
-        }else {
-            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
-        }
-        if let flashStatus = args["isShowFlashIcon"] as? Bool{
-            SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
-        }else {
-            SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = false
-        }
-        if let isContinuousScan = args["isContinuousScan"] as? Bool{
-            SwiftFlutterBarcodeScannerPlugin.isContinuousScan = isContinuousScan
-        }else {
-            SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
-        }
-        
-        if let scanModeReceived = args["scanMode"] as? Int {
-            if scanModeReceived == ScanMode.DEFAULT.index {
-                SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
-            }else{
-                SwiftFlutterBarcodeScannerPlugin.scanMode = scanModeReceived
-            }
-        }else{
-            SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
-        }
-        
-        pendingResult=result
-        let controller = BarcodeScannerViewController()
-        controller.delegate = self
-        
-        if #available(iOS 13.0, *) {
-            controller.modalPresentationStyle = .fullScreen
-        }
-        
-        if checkCameraAvailability(){
-            if checkForCameraPermission() {
-                SwiftFlutterBarcodeScannerPlugin.viewController.present(controller
-                                                                        , animated: true) {
-                    
-                }
+        if call.method == "scanBarcode" {
+            let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
+            if let colorCode = args["lineColor"] as? String{
+                SwiftFlutterBarcodeScannerPlugin.lineColor = colorCode
             }else {
-                AVCaptureDevice.requestAccess(for: .video) { success in
-                    DispatchQueue.main.async {
-                        if success {
-                            SwiftFlutterBarcodeScannerPlugin.viewController.present(controller
-                                                                                    , animated: true) {
-                                
-                            }
-                        } else {
-                            let alert = UIAlertController(title: "Action needed", message: "Please grant camera permission to use barcode scanner", preferredStyle: .alert)
-                            
-                            alert.addAction(UIAlertAction(title: "Grant", style: .default, handler: { action in
-                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                            }))
-                            
-                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                            
-                            SwiftFlutterBarcodeScannerPlugin.viewController.present(alert, animated: true)
-                        }
+                SwiftFlutterBarcodeScannerPlugin.lineColor = "#ff6666"
+            }
+            if let buttonText = args["cancelButtonText"] as? String{
+                SwiftFlutterBarcodeScannerPlugin.cancelButtonText = buttonText
+            }else {
+                SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
+            }
+            if let flashStatus = args["isShowFlashIcon"] as? Bool{
+                SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
+            }else {
+                SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = false
+            }
+            if let isContinuousScan = args["isContinuousScan"] as? Bool{
+                SwiftFlutterBarcodeScannerPlugin.isContinuousScan = isContinuousScan
+            }else {
+                SwiftFlutterBarcodeScannerPlugin.isContinuousScan = false
+            }
+
+            if let scanModeReceived = args["scanMode"] as? Int {
+                if scanModeReceived == ScanMode.DEFAULT.index {
+                    SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
+                }else{
+                    SwiftFlutterBarcodeScannerPlugin.scanMode = scanModeReceived
+                }
+            }else{
+                SwiftFlutterBarcodeScannerPlugin.scanMode = ScanMode.QR.index
+            }
+
+            pendingResult=result
+            self.controller = BarcodeScannerViewController()
+            self.controller?.delegate = self
+
+            if #available(iOS 13.0, *) {
+                self.controller?.modalPresentationStyle = .fullScreen
+            }
+
+            if checkCameraAvailability(){
+                if checkForCameraPermission() {
+                    SwiftFlutterBarcodeScannerPlugin.viewController.present(self.controller!
+                                                                            , animated: true) {
+
                     }
-                }}
-        }else {
-            showAlertDialog(title: "Unable to proceed", message: "Camera not available")
+                }else {
+                    AVCaptureDevice.requestAccess(for: .video) { success in
+                        DispatchQueue.main.async {
+                            if success {
+                                SwiftFlutterBarcodeScannerPlugin.viewController.present(self.controller!
+                                                                                        , animated: true) {
+
+                                }
+                            } else {
+                                let alert = UIAlertController(title: "Action needed", message: "Please grant camera permission to use barcode scanner", preferredStyle: .alert)
+
+                                alert.addAction(UIAlertAction(title: "Grant", style: .default, handler: { action in
+                                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                                }))
+
+                                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                                
+                                SwiftFlutterBarcodeScannerPlugin.viewController.present(alert, animated: true)
+                            }
+                        }
+                    }}
+            }else {
+                showAlertDialog(title: "Unable to proceed", message: "Camera not available")
+            }
+        } else if call.method == "closeScanner" {
+            self.controller?.closeScanner()
+        } else {
+            result(FlutterMethodNotImplemented)
         }
     }
     
@@ -454,9 +461,7 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
-    
-    /// Cancel button click event listener
-    @IBAction private func cancelButtonClicked() {
+    public func closeScanner() {
         if SwiftFlutterBarcodeScannerPlugin.isContinuousScan{
             self.dismiss(animated: true, completion: {
                 SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: "-1")
@@ -470,6 +475,11 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
+    /// Cancel button click event listener
+    @IBAction private func cancelButtonClicked() {
+        self.closeScanner()
+    }
+
     /// Switch camera button click event listener
     @IBAction private func switchCameraButtonClicked() {
         // Get the current active input.
