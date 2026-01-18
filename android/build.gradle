@@ -23,6 +23,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
+    namespace = "com.amolg.flutterbarcodescanner"
 
     defaultConfig {
         minSdkVersion 16
