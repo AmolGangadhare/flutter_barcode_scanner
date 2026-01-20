@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -99,6 +100,17 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     }
 
     private int flashStatus = USE_FLASH.OFF.ordinal();
+
+    private BroadcastReceiver finishBroadcast;
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+            int RECEIVER_EXPORTED = 2;
+            return super.registerReceiver(receiver, filter, RECEIVER_EXPORTED);
+        }
+        return super.registerReceiver(receiver, filter);
+    }
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -253,6 +265,17 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     protected void onResume() {
         super.onResume();
         startCameraSource();
+
+        finishBroadcast = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context arg0, Intent intent) {
+                String action = intent.getAction();
+                if (action.equals("finishCapture")) {
+                    finish();
+                }
+            }
+        };
+        registerReceiver(finishBroadcast, new IntentFilter("finishCapture"));
     }
 
     /**
@@ -264,6 +287,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         if (mPreview != null) {
             mPreview.stop();
         }
+
+        unregisterReceiver(finishBroadcast);
     }
 
     /**

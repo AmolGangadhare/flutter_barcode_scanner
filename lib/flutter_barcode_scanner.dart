@@ -18,6 +18,10 @@ class FlutterBarcodeScanner {
 
   static Stream? _onBarcodeReceiver;
 
+  static dismiss() {
+    _channel.invokeMethod('dismiss', {'dismissScanner': '1'});
+  }
+
   /// Scan with the camera until a barcode is identified, then return.
   ///
   /// Shows a scan line with [lineColor] over a scan window. A flash icon is
