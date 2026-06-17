@@ -4,7 +4,8 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
-        jcenter()
+        //jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -15,13 +16,18 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        //jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.amolg.flutterbarcodescanner'
+    }
+    
     compileSdkVersion 30
 
     defaultConfig {
