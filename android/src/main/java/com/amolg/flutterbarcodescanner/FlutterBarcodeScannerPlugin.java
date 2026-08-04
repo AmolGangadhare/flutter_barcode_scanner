@@ -8,7 +8,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -54,8 +53,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     private FlutterPluginBinding pluginBinding;
     private ActivityPluginBinding activityBinding;
     private Application applicationContext;
-    // This is null when not using v2 embedding;
-    private Lifecycle lifecycle;
+    // Remove direct lifecycle reference - use ActivityAware callbacks instead
     private LifeCycleObserver observer;
 
     public FlutterBarcodeScannerPlugin() {
@@ -274,9 +272,11 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         // V2 embedding setup for activity listeners.
         if (activityBinding != null) {
             activityBinding.addActivityResultListener(this);
-            lifecycle = (Lifecycle) activityBinding.getLifecycle();
             observer = new LifeCycleObserver(activity);
-            lifecycle.addObserver(observer);
+            // Register observer with the application context instead of direct lifecycle casting
+            if (applicationContext != null) {
+                applicationContext.registerActivityLifecycleCallbacks(observer);
+            }
         }
     }
 
@@ -304,9 +304,8 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             activityBinding.removeActivityResultListener(this);
             activityBinding = null;
         }
-        if (lifecycle != null && observer != null) {
-            lifecycle.removeObserver(observer);
-            lifecycle = null;
+        if (observer != null && applicationContext != null) {
+            applicationContext.unregisterActivityLifecycleCallbacks(observer);
         }
         if (channel != null) {
             channel.setMethodCallHandler(null);
