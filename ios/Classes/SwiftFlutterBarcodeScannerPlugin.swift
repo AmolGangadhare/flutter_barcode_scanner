@@ -24,7 +24,9 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var scanMode = ScanMode.QR.index
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        viewController = (UIApplication.shared.delegate?.window??.rootViewController)!
+        if let rootViewController = UIApplication.shared.delegate?.window??.rootViewController {
+            viewController = rootViewController
+        }
         let channel = FlutterMethodChannel(name: "flutter_barcode_scanner", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterBarcodeScannerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
@@ -52,11 +54,14 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     }
     
     public static func onBarcodeScanReceiver( barcode:String){
-        barcodeStream!(barcode)
+        barcodeStream?(barcode)
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        let args:Dictionary<String, AnyObject> = call.arguments as! Dictionary<String, AnyObject>;
+        guard let args = call.arguments as? Dictionary<String, AnyObject> else {
+            result(nil)
+            return
+        }
         if let colorCode = args["lineColor"] as? String{
             SwiftFlutterBarcodeScannerPlugin.lineColor = colorCode
         }else {
@@ -170,8 +175,10 @@ class BarcodeScannerViewController: UIViewController {
     private var scanLine: UIView = UIView()
     var screenSize = UIScreen.main.bounds
     private var isOrientationPortrait = true
+    private var didScan = false
     var screenHeight:CGFloat = 0
     let captureMetadataOutput = AVCaptureMetadataOutput()
+    private let sessionQueue = DispatchQueue(label: "flutter_barcode_scanner.sessionQueue")
     
     private lazy var xCor: CGFloat! = {
         return self.isOrientationPortrait ? (screenSize.width - (screenSize.width*0.8))/2 :
@@ -235,7 +242,9 @@ class BarcodeScannerViewController: UIViewController {
 
     override public func viewDidDisappear(_ animated: Bool){
         // Stop video capture
-        captureSession.stopRunning()
+        sessionQueue.async {
+            self.captureSession.stopRunning()
+        }
     }
     
     // Init UI components needed
@@ -322,7 +331,9 @@ class BarcodeScannerViewController: UIViewController {
         
         
         // Start video capture.
-        captureSession.startRunning()
+        sessionQueue.async {
+            self.captureSession.startRunning()
+        }
         
         let scanRect = CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight)
         
@@ -563,6 +574,10 @@ class BarcodeScannerViewController: UIViewController {
         if presentedViewController != nil {
             return
         }
+        if didScan {
+            return
+        }
+        didScan = true
         if self.delegate != nil {
             self.dismiss(animated: true, completion: {
                 self.delegate?.userDidScanWith(barcode: decodedURL)
