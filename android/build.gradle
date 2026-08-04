@@ -4,39 +4,61 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:8.1.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://storage.googleapis.com/download.flutter.io'
+        }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
+    namespace 'com.amolg.flutterbarcodescanner'
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     lintOptions {
         disable 'InvalidPackage'
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    
+    implementation 'androidx.lifecycle:lifecycle-common:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.7.0'
+    
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    
+    compileOnly 'io.flutter:flutter_embedding_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a'
+    compileOnly 'io.flutter:armeabi_v7a_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a'
+    compileOnly 'io.flutter:arm64_v8a_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a'
+    compileOnly 'io.flutter:x86_64_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a'
+    compileOnly 'io.flutter:x86_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a'
 }
