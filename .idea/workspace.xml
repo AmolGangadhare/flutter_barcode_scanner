@@ -8,44 +8,27 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="da89e606-25cd-40ec-9bab-57632cc5ea41" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/camera/CameraSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/amolg/flutterbarcodescanner/camera/CameraSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/res/drawable/ic_barcode_flash_off.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/res/drawable/ic_barcode_flash_off.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/res/drawable/ic_barcode_flash_on.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/res/drawable/ic_barcode_flash_on.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/res/drawable/ic_switch_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/res/drawable/ic_switch_camera.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/res/layout/barcode_capture.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/res/layout/barcode_capture.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/java/com/amolg/flutterbarcodescanner/BarcodeCaptureActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_barcode_flash_off.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_barcode_flash_off.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_barcode_flash_on.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_barcode_flash_on.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_switch_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/drawable/ic_switch_camera.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/layout/barcode_capture.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/android/src/main/res/layout/barcode_capture.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_barcode_scanner/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +38,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2f246355]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -72,21 +54,21 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ios" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ios" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ios" />
       <recent name="$PROJECT_DIR$/example/android/app/src/main/java/com/amolg/flutterbarcodescannerexample" />
       <recent name="$PROJECT_DIR$/example/android/app/src/main/java/com/amolg" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/ios" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -100,6 +82,98 @@
       <option name="presentableId" value="Default" />
       <updated>1551293438531</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added Central Barcode Focusing">
+      <created>1621069240414</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621069240415</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Central Barcode Focusing 2">
+      <created>1621071881000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1621071881000</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Central Barcode Focusing 3">
+      <created>1621072399367</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621072399367</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Central Barcode Focusing 4">
+      <created>1621073485269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1621073485269</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Central Barcode Focusing 5">
+      <created>1621073817351</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1621073817351</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Central Barcode Focusing Fix #1 on Central Size">
+      <created>1621139208520</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621139208520</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added Central Barcode Focusing Fix #2 on Central Size">
+      <created>1621139823109</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621139823109</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added Central Barcode Focusing Fix #2 on Central Size">
+      <created>1621140223833</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1621140223834</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added Central Barcode Focusing Fix #2 on Central Size">
+      <created>1621142310833</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1621142310833</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621145074271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1621145074271</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621146182720</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1621146182720</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621146502069</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621146502069</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added Central-Focusing for Barcode &amp; QR Scanning for Android">
+      <created>1621146755846</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1621146755846</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,18 +181,34 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Central Barcode Focusing" />
+    <MESSAGE value="Added Central Barcode Focusing 2" />
+    <MESSAGE value="Added Central Barcode Focusing 3" />
+    <MESSAGE value="Added Central Barcode Focusing 4" />
+    <MESSAGE value="Added Central Barcode Focusing 5" />
+    <MESSAGE value="Added Central Barcode Focusing Fix #1 on Central Size" />
+    <MESSAGE value="Added Central Barcode Focusing Fix #2 on Central Size" />
+    <MESSAGE value="Added Central-Focusing for Barcode &amp; QR Scanning for Android" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Central-Focusing for Barcode &amp; QR Scanning for Android" />
   </component>
   <component name="WindowStateProjectService">
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618866209289">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state x="268" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.729@0.23.1280.729" timestamp="1618866209289" />
+    <state x="239" y="0" key="CommitChangelistDialog2" timestamp="1621146752950">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="239" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621146752950" />
     <state width="1238" height="181" key="GridCell.Tab.0.bottom" timestamp="1618868504824">
       <screen x="0" y="23" width="1280" height="729" />
     </state>
@@ -135,80 +225,28 @@
       <screen x="0" y="23" width="1280" height="729" />
     </state>
     <state width="1238" height="181" key="GridCell.Tab.0.right/0.23.1280.729@0.23.1280.729" timestamp="1618868504824" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>flutter_barcode_scanner</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Dart SDK</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <state x="326" y="0" key="SettingsEditor" timestamp="1621137276287">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="326" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621137276287" />
+    <state x="855" y="198" key="SettingsEditor/0.25.1920.970@0.25.1920.970" timestamp="1621060125755" />
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2" timestamp="1621146764697">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="398" y="167" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621146764697" />
+    <state x="560" y="247" key="Vcs.Push.Dialog.v2/0.25.1920.970@0.25.1920.970" timestamp="1621073829074" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1621145198335">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1621145198335" />
+    <state x="464" y="88" width="607" height="552" key="find.popup" timestamp="1621144238581">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="464" y="88" width="607" height="552" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621144238581" />
+    <state x="652" y="142" width="642" height="735" key="find.popup/0.25.1920.970@0.25.1920.970" timestamp="1621071560070" />
+    <state width="421" height="123" key="javadoc.popup.new" timestamp="1621146150563">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="421" height="123" key="javadoc.popup.new/0.0.1366.728@0.0.1366.728" timestamp="1621146150563" />
   </component>
 </project>
