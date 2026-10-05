@@ -8,15 +8,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.Map;
-
-import io.flutter.embedding.android.FlutterActivity;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -27,10 +24,8 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener;
 import io.flutter.plugin.common.EventChannel.StreamHandler;
-import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 
 
 /**
@@ -39,7 +34,7 @@ import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener, StreamHandler, FlutterPlugin, ActivityAware {
     private static final String CHANNEL = "flutter_barcode_scanner";
 
-    private static FlutterActivity activity;
+    private static Activity activity;
     private static Result pendingResult;
     private Map<String, Object> arguments;
 
@@ -52,23 +47,19 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     private EventChannel eventChannel;
 
     /**
-     * V2 embedding
-     *
-     * @param activity
-     * @param registrar
+     * V2 embedding only
      */
     private MethodChannel channel;
     private FlutterPluginBinding pluginBinding;
     private ActivityPluginBinding activityBinding;
     private Application applicationContext;
-    // This is null when not using v2 embedding;
-    private Lifecycle lifecycle;
+    // Remove direct lifecycle reference - use ActivityAware callbacks instead
     private LifeCycleObserver observer;
 
     public FlutterBarcodeScannerPlugin() {
     }
 
-    private FlutterBarcodeScannerPlugin(FlutterActivity activity, final PluginRegistry.Registrar registrar) {
+    private FlutterBarcodeScannerPlugin(Activity activity, final PluginRegistry.Registrar registrar) {
         FlutterBarcodeScannerPlugin.activity = activity;
     }
 
@@ -84,7 +75,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         if (registrar.context() != null) {
             applicationContext = (Application) (registrar.context().getApplicationContext());
         }
-        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin((FlutterActivity) registrar.activity(), registrar);
+        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin(activity, registrar);
         instance.createPluginSetup(registrar.messenger(), applicationContext, activity, registrar, null);
     }
 
@@ -124,6 +115,15 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
     private void startBarcodeScannerActivityView(String buttonText, boolean isContinuousScan) {
         try {
+            if (activity == null) {
+                Log.e(TAG, "Activity is null, cannot start barcode scanner");
+                if (pendingResult != null) {
+                    pendingResult.error("NO_ACTIVITY", "Activity not available", null);
+                    pendingResult = null;
+                }
+                return;
+            }
+            
             Intent intent = new Intent(activity, BarcodeCaptureActivity.class).putExtra("cancelButtonText", buttonText);
             if (isContinuousScan) {
                 activity.startActivity(intent);
@@ -132,6 +132,10 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             }
         } catch (Exception e) {
             Log.e(TAG, "startView: " + e.getLocalizedMessage());
+            if (pendingResult != null) {
+                pendingResult.error("START_ACTIVITY_ERROR", e.getLocalizedMessage(), null);
+                pendingResult = null;
+            }
         }
     }
 
@@ -152,18 +156,27 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                     try {
                         Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                         String barcodeResult = barcode.rawValue;
-                        pendingResult.success(barcodeResult);
+                        if (pendingResult != null) {
+                            pendingResult.success(barcodeResult);
+                        }
                     } catch (Exception e) {
-                        pendingResult.success("-1");
+                        if (pendingResult != null) {
+                            pendingResult.success("-1");
+                        }
                     }
                 } else {
-                    pendingResult.success("-1");
+                    if (pendingResult != null) {
+                        pendingResult.success("-1");
+                    }
                 }
                 pendingResult = null;
                 arguments = null;
                 return true;
             } else {
-                pendingResult.success("-1");
+                if (pendingResult != null) {
+                    pendingResult.success("-1");
+                    pendingResult = null;
+                }
             }
         }
         return false;
@@ -194,11 +207,13 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
      */
     public static void onBarcodeScanReceiver(final Barcode barcode) {
         try {
-            if (barcode != null && !barcode.displayValue.isEmpty()) {
+            if (barcode != null && !barcode.displayValue.isEmpty() && activity != null) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        barcodeStream.success(barcode.rawValue);
+                        if (barcodeStream != null) {
+                            barcodeStream.success(barcode.rawValue);
+                        }
                     }
                 });
             }
@@ -234,18 +249,17 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
      * @param messenger
      * @param applicationContext
      * @param activity
-     * @param registrar
      * @param activityBinding
      */
     private void createPluginSetup(
             final BinaryMessenger messenger,
             final Application applicationContext,
             final Activity activity,
-            final PluginRegistry.Registrar registrar,
             final ActivityPluginBinding activityBinding) {
 
 
-        this.activity = (FlutterActivity) activity;
+        FlutterBarcodeScannerPlugin.activity = activity;
+        this.activity = activity;
         eventChannel =
                 new EventChannel(messenger, "flutter_barcode_scanner_receiver");
         eventChannel.setStreamHandler(this);
@@ -254,18 +268,15 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         this.applicationContext = applicationContext;
         channel = new MethodChannel(messenger, CHANNEL);
         channel.setMethodCallHandler(this);
-        if (registrar != null) {
-            // V1 embedding setup for activity listeners.
-            observer = new LifeCycleObserver(activity);
-            applicationContext.registerActivityLifecycleCallbacks(
-                    observer); // Use getApplicationContext() to avoid casting failures.
-            registrar.addActivityResultListener(this);
-        } else {
-            // V2 embedding setup for activity listeners.
+        
+        // V2 embedding setup for activity listeners.
+        if (activityBinding != null) {
             activityBinding.addActivityResultListener(this);
-            lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(activityBinding);
             observer = new LifeCycleObserver(activity);
-            lifecycle.addObserver(observer);
+            // Register observer with the application context instead of direct lifecycle casting
+            if (applicationContext != null) {
+                applicationContext.registerActivityLifecycleCallbacks(observer);
+            }
         }
     }
 
@@ -276,7 +287,6 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 pluginBinding.getBinaryMessenger(),
                 (Application) pluginBinding.getApplicationContext(),
                 activityBinding.getActivity(),
-                null,
                 activityBinding);
     }
 
@@ -290,15 +300,26 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
      */
     private void clearPluginSetup() {
         activity = null;
-        activityBinding.removeActivityResultListener(this);
-        activityBinding = null;
-        lifecycle.removeObserver(observer);
-        lifecycle = null;
-        channel.setMethodCallHandler(null);
-        eventChannel.setStreamHandler(null);
-        channel = null;
-        applicationContext.unregisterActivityLifecycleCallbacks(observer);
-        applicationContext = null;
+        if (activityBinding != null) {
+            activityBinding.removeActivityResultListener(this);
+            activityBinding = null;
+        }
+        if (observer != null && applicationContext != null) {
+            applicationContext.unregisterActivityLifecycleCallbacks(observer);
+        }
+        if (channel != null) {
+            channel.setMethodCallHandler(null);
+            channel = null;
+        }
+        if (eventChannel != null) {
+            eventChannel.setStreamHandler(null);
+            eventChannel = null;
+        }
+        if (applicationContext != null && observer != null) {
+            applicationContext.unregisterActivityLifecycleCallbacks(observer);
+            applicationContext = null;
+        }
+        observer = null;
     }
 
     /**

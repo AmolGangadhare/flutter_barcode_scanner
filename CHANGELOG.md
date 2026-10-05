@@ -1,3 +1,13 @@
+## 2.0.1
+
+* Update Gradle to 8.7
+* Update Android SDK to 34
+* Update Java compatibility to version 17
+* Update Flutter SDK constraints for 3.29.3
+* Update minimum Flutter version to 3.19.0
+* Update various Android and Flutter dependencies
+* Add repository and issue tracker URLs
+
 ## 2.0.0
 
 * Android: Fixes #137 and #132
