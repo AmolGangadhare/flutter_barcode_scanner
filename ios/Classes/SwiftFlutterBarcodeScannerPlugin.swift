@@ -23,12 +23,9 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     public static var isContinuousScan:Bool=false
     static var barcodeStream:FlutterEventSink?=nil
     public static var scanMode = ScanMode.QR.index
-    private var registrar: FlutterPluginRegistrar?
-
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "flutter_barcode_scanner", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterBarcodeScannerPlugin()
-        instance.registrar = registrar // Store registrar to find window later
         registrar.addMethodCallDelegate(instance, channel: channel)
 
         let eventChannel = FlutterEventChannel(name: "flutter_barcode_scanner_receiver", binaryMessenger: registrar.messenger())
@@ -76,14 +73,18 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
             SwiftFlutterBarcodeScannerPlugin.scanMode = (scanModeReceived == ScanMode.DEFAULT.index) ? ScanMode.QR.index : scanModeReceived
 
             DispatchQueue.main.async {
-                let keyWindow = UIApplication.shared.connectedScenes
-                    .filter({$0.activationState == .foregroundActive})
-                    .map({$0 as? UIWindowScene})
-                    .compactMap({$0})
-                    .first?.windows
-                    .filter({$0.isKeyWindow}).first
-
-                guard let rootVC = keyWindow?.rootViewController else {
+                let rootVC: UIViewController?
+                if #available(iOS 13.0, *) {
+                    rootVC = UIApplication.shared.connectedScenes
+                        .filter({$0.activationState == .foregroundActive})
+                        .compactMap({$0 as? UIWindowScene})
+                        .first?.windows
+                        .filter({$0.isKeyWindow}).first?
+                        .rootViewController
+                } else {
+                    rootVC = UIApplication.shared.delegate?.window??.rootViewController
+                }
+                guard let rootVC = rootVC else {
                     self.pendingResult = nil
                     result(FlutterError(code: "NO_WINDOW", message: "Window hierarchy not found", details: nil))
                     return
@@ -129,17 +130,6 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         rootVC.present(alert, animated: true)
     }
 
-    public func userDidScanWith(barcode: String){
-        pendingResult(barcode)
-    }
-
-    /// Show common alert dialog
-    func showAlertDialog(title:String,message:String){
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-        SwiftFlutterBarcodeScannerPlugin.viewController.present(alertController, animated: true, completion: nil)
-    }
 
     public func userDidProvide(_ barcode: String) {
         if (SwiftFlutterBarcodeScannerPlugin.isContinuousScan) {
@@ -154,14 +144,20 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
 
     public func userDidCancel() {
         if (self.pendingResult != nil) {
-            self.pendingResult("") // Return empty string to Flutter
-            self.pendingResult = nil // IMPORTANT: Must set to nil
+            self.pendingResult("-1") // Match Android cancel sentinel
+            self.pendingResult = nil
         }
     }
 }
 
 protocol ScanBarcodeDelegate {
-    func userDidScanWith(barcode: String)
+    func userDidProvide(_ barcode: String)
+    func userDidCancel()
+}
+
+extension ScanBarcodeDelegate {
+    // Bridge for existing call sites that call userDidScanWith; routes to userDidProvide.
+    func userDidScanWith(barcode: String) { userDidProvide(barcode) }
 }
 
 class BarcodeScannerViewController: UIViewController {
@@ -539,7 +535,7 @@ class BarcodeScannerViewController: UIViewController {
         }else{
             if self.delegate != nil {
                 self.dismiss(animated: true, completion: {
-                    self.delegate?.userDidScanWith(barcode: "-2")
+                    self.delegate?.userDidCancel()
                 })
             }
         }
